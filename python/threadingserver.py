@@ -11,10 +11,11 @@ def main():
             super().__init__()
             self.cclient = cclient
         
+        
         def run(self):
             my_dict = {}
             my_dict['filename'] = '一脸懵逼.jpg'
-            my_dict['filedata'] = data 
+            my_dict['filedata'] = data
             json_str = dumps(my_dict)
             self.cclient.send(json_str.encode('utf-8'))
             self.cclient.close()
