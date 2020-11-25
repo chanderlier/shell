@@ -16,9 +16,9 @@ mv aliyun /usr/local/bin
 init
 ```sh
 aliyun configure
-aliyun Access Key ID [None]: xxxxx
+aliyun Access Key ID [None]: xxxxx #Access Key ID 和 Secret需要下载
 aliyun Access Key Secret [None]: xxxxx
-Default Region Id [None]: cn-hangzhou # 地域ID
+Default Region Id [None]: cn-shanghai # 地域ID
 Default Output Format [json]: json (Only supports JSON) # 目前仅支持JSON
 Default Language [zh|en]: en # 在这里选择英语
 ```
