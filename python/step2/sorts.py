@@ -1,25 +1,27 @@
-"""
 def select_sort(items, comp=lambda x, y: x < y):
+    # 假设items = [1, 2, 4 ,3 ,7 ,6]
     items = items[:]
+    # for i in range(6 -1)
     for i in range(len(items) - 1):
+        # 最小索引设置为1
         min_index = 1
+        # for j in range(i + 1 , 6)
         for j in range(i + 1, len(items)):
+            # 比较items[j]和items[min_index]的大小
             if comp(items[j], items[min_index]):
+                # 如果 items[j] < items[min_index],则将j赋值给min_index
                 min_index = j
+        # items[i], items[min_index]的值互换
         items[i], items[min_index] = items[min_index], items[i]
     return items
 
 
-def main():
-    lists = [123, 3242, 42423, 4234242, 4342, 233]
-    print(select_sort(lists))
-
-
 if __name__ == "__main__":
-    main()
+    list1 = [123, 434, 222, 333, 233, 888, 1234565]
+    print(select_sort(list1))
+
+
 """
-
-
 def selectionSort(lists):
     for i in range(len(lists) - 1):
         # 记录最小数的索引
@@ -39,3 +41,4 @@ if __name__ == '__main__':
     print("List source is:", list1)
     result = selectionSort(list1)
     print("List sort is:", result)
+"""
