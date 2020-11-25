@@ -2,13 +2,18 @@
 ```sh
 wget https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
 ```
+解压
 ```sh
 unzip terraform_0.13.5_linux_amd64.zip
 ```
 ```sh
-mv 
+mv terraform_0.13.5_linux_amd64 /usr/local/bin/terraform
 ```
 通过terraform快速创建一个ECS实例，并设置好相应的服务,例如VPC
+```sh
+cat terraform.tf
+```
+```sh
 resource "alicloud_vpc" "vpc" {
   name       = "tf_test"
   cidr_block = "172.16.0.0/12"
@@ -48,3 +53,4 @@ resource "alicloud_instance" "instance" {
   #internet_max_bandwidth_out =10
   password = "password!@1234"
 }
+```
