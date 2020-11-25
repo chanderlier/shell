@@ -4,3 +4,4 @@ pages:
 - 主页: index.md
 - terraform: terraform.md
 - aliyun: cli.md
+- readme: readme.md
