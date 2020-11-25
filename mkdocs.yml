@@ -5,3 +5,4 @@ pages:
 - terraform: terraform.md
 - aliyun: cli.md
 - readme: readme.md
+- wordpress: wordpress.md
