@@ -20,7 +20,7 @@ Usage: terraform [-version] [-help] <command> [args]
 
 The available commands for execution are listed below.
 The most common, useful commands are shown first, followed by
-less common or more advanced commands. If you're just getting
+less common or more advanced commands. If you are just getting
 started with Terraform, stick with the common commands. For the
 other commands, please read the help and docs before usage.
 
@@ -136,6 +136,7 @@ resource "alicloud_ram_group_membership" "membership" {
   user_names = [alicloud_ram_user.user.name]
 }
 ```
+
 ###方式二
 ```sh
 module "ram_user" {
