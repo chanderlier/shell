@@ -14,6 +14,7 @@ mv terraform_0.13.5_linux_amd64 /usr/local/bin/terraform
 ```sh
 terraform
 ```
+
 ```sh
 Usage: terraform [-version] [-help] <command> [args]
 
@@ -29,12 +30,14 @@ Common commands:
     destroy            Destroy Terraform-managed infrastructure
     env                Workspace management
 ```
+
 配置信息
 ```sh
 export ALICLOUD_ACCESS_KEY="LTAIUrZCw3********"
 export ALICLOUD_SECRET_KEY="zfwwWAMWIAiooj14GQ2*************"
 export ALICLOUD_REGION="cn-shanghai"
 ```
+
 ##ECS
 通过terraform快速创建一个ECS实例，并设置好相应的服务,例如VPC
 ```sh
@@ -93,9 +96,8 @@ terraform show
 ```sh
 terraform destroy
 ```
-
-
 ##RAM
+通过terraform创建一个RAM用户
 ###方式一
 ```sh
 cat terraform.tf
