@@ -1,4 +1,4 @@
-安装terraform
+## 安装
 ```sh
 wget https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
 ```
@@ -14,7 +14,7 @@ mv terraform_0.13.5_linux_amd64 /usr/local/bin/terraform
 ```sh
 terraform
 ```
-
+终端部分信息如下
 ```sh
 Usage: terraform [-version] [-help] <command> [args]
 
