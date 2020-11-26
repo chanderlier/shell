@@ -35,6 +35,7 @@ export ALICLOUD_ACCESS_KEY="LTAIUrZCw3********"
 export ALICLOUD_SECRET_KEY="zfwwWAMWIAiooj14GQ2*************"
 export ALICLOUD_REGION="cn-shanghai"
 ```
+##ECS
 通过terraform快速创建一个ECS实例，并设置好相应的服务,例如VPC
 ```sh
 cat terraform.tf
@@ -92,3 +93,61 @@ terraform show
 ```sh
 terraform destroy
 ```
+
+
+##RAM
+###方式一
+```sh
+cat terraform.tf
+```
+```sh
+provider "alicloud" {
+}
+//创建RAM用户，包含用户名、昵称、手机号、邮箱、备注、
+resource "alicloud_ram_user" "user" {
+  name         = "user_test"
+  display_name = "testAccount"
+  mobile       = "86-18888888888"
+  email        = "localhost@example.com"
+  comments     = "jojo"
+  force        = true
+}
+//指定用户名密码登陆控制台
+resource "alicloud_ram_login_profile" "profile" {
+  user_name = alicloud_ram_user.user.name //这边等同于user_test
+  password  = "Password!@1234" //控制台登陆的密码
+}
+//创建访问密钥AccessKey
+resource "alicloud_ram_access_key" "ak" {
+  user_name   = alicloud_ram_user.user.name
+  secret_file = "accesskey.txt" //创建secret，保存为accesskey.txt
+}
+//创建ram群组
+resource "alicloud_ram_group" "group" {
+  name     = "test_ram_group"
+  comments = "this is a group comments."
+  force    = true
+}
+//将用户加入用户组
+resource "alicloud_ram_group_membership" "membership" {
+  group_name = alicloud_ram_group.group.name
+  user_names = [alicloud_ram_user.user.name]
+}
+```
+###方式二
+```sh
+module "ram_user" {
+   // 引用module源地址
+   source = "terraform-alicloud-modules/ram/alicloud"
+   // RAM用户名
+   name = "test_user"
+   // 是否创建控制台登录凭证
+   create_ram_user_login_profile = true
+   // 控制台登录密码
+   password = "Password!@1234"
+   // 是否创建accesskey
+   create_ram_access_key = true
+   // 是否赋予管理员权限
+   is_admin = true
+ }
+ ```
