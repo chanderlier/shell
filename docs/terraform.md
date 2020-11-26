@@ -6,6 +6,7 @@ wget https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd6
 ```sh
 unzip terraform_0.13.5_linux_amd64.zip
 ```
+将应用放置到/usr/local/bin
 ```sh
 mv terraform_0.13.5_linux_amd64 /usr/local/bin/terraform
 ```
