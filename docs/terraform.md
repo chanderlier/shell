@@ -142,8 +142,7 @@ resource "alicloud_ram_group_membership" "membership" {
 ```sh
 cat terraform.tf
 ```
-```sh
-
+```
 module "ram_user" {
    // 引用module源地址
    source = "terraform-alicloud-modules/ram/alicloud"
@@ -158,4 +157,4 @@ module "ram_user" {
    // 是否赋予管理员权限
    is_admin = true
  }
- ```
+``` 
