@@ -139,7 +139,6 @@ resource "alicloud_ram_group_membership" "membership" {
 ```
 
 ### 方式二
-
 ```sh
 module "ram_user" {
    // 引用module源地址
