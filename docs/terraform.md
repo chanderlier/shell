@@ -135,9 +135,11 @@ resource "alicloud_ram_group_membership" "membership" {
   group_name = alicloud_ram_group.group.name
   user_names = [alicloud_ram_user.user.name]
 }
+
 ```
 
 ### 方式二
+
 ```sh
 module "ram_user" {
    // 引用module源地址
