@@ -143,6 +143,7 @@ resource "alicloud_ram_group_membership" "membership" {
 cat terraform.tf
 ```
 ```sh
+
 module "ram_user" {
    // 引用module源地址
    source = "terraform-alicloud-modules/ram/alicloud"
