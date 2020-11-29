@@ -7,3 +7,4 @@ pages:
 - readme: readme.md
 - WordPress: wordpress.md
 - CICD: cicd.md
+- monitoring: monitoring.md
