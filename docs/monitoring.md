@@ -21,9 +21,11 @@ cat /usr/lib/systemd/system/node_exporter.service
 ```
 ```sh
 ```
+设置为开机自启动
 ```sh
 systemctl enable node_exporter
 ```
+启动node_exporter
 ```sh
 systemctl start node_exporter
 ```
