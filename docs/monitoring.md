@@ -80,15 +80,37 @@ systemctl status node_exporter
 ```
 ### blackbox_exporter
 #### 安装
+```sh
 wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.18.0/blackbox_exporter-0.18.0.linux-amd64.tar.gz
+```
+```
+tar zxvf blackbox_exporter-0.18.0.linux-amd64
+```
+```
+mv blackbox_exporter-0.18.0.linux-amd64 /usr/local/blackbox_exporter
+```
 ### mysql_exporter
 #### 安装
+```
 wget https://github.com/prometheus/mysqld_exporter/releases/download/v0.12.1/mysqld_exporter-0.12.1.linux-amd64.tar.gz
+```
+```
+tar zxvf mysqld_exporter-0.12.1.linux-amd64.tar.gz 
+```
+```
+mv mysqld_exporter-0.12.1.linux-amd64 /usr/local/mysql_exporter
+```
 ### consul
 #### 安装
 下载
 ```sh
 wget https://github.com/prometheus/consul_exporter/releases/download/v0.7.1/consul_exporter-0.7.1.linux-amd64.tar.gz
+```
+```
+tar -zxvf consul_exporter-0.7.1.linux-amd64.tar.gz
+```
+```
+mv consul_exporter-0.7.1.linux-amd64 /usr/local/consul_exporter
 ```
 ## grafana
 #### 安装
