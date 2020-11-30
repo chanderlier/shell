@@ -7,7 +7,18 @@
 主要组件
 ### node_exporter
 #### 安装
-wget
+```sh
+wget https://github.com/prometheus/node_exporter/releases/download/v0.21.0/node_exporter-0.21.0.linux-amd64.tar.gz
+```
+```sh
+tar xvf node_exporter-0.21.0.linux-amd64.tar.gz
+```
+```sh
+mv node_exporter-0.21.0.linux-amd64 /usr/local/node_exporter
+```
+```sh
+cat /usr/lib/systemd/system/node_exporter.service
+```
 ### blackbox_exporter
 #### 安装
 wget
