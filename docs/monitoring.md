@@ -43,23 +43,30 @@ wget
 w
 ## alertmanager
 #### 安装
+下载
 ```sh
 wget https://github.com/prometheus/alertmanager/releases/download/v0.21.0/alertmanager-0.21.0.linux-386.tar.gz
 ```
+解压
 ```sh
 tar zxvf alertmanager-0.21.0.linux-386.tar.gz
 ```
+移动到指定目录
 ```sh
 mv alertmanager-0.21.0.linux-386.tar.gz /usr/local/alertmanager
 ```
+编辑service配置文件
 ```sh
 cat /usr/lib/systemd/system/alertmanager.service
 ```
+配置文件信息
 ```sh
 ```
+设置为开机自启动
 ```sh
 systemctl enable alertmanager
 ```
+启动alertmanager
 ```sh
 systemctl start alertmanager
 ```
