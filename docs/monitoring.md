@@ -2,23 +2,69 @@
 简单介绍如何通过prometheus、grafana、alertmanager实现对服务器性能的监控、可视化、告警等
 ## prometheus
 #### 安装prometheus
+下载
+```sh
+wget https://github.com/prometheus/prometheus/releases/download/v2.23.0/prometheus-2.23.0.linux-amd64.tar.gz
+```
+解压
+```sh
+tar -zxvf prometheus-2.23.0.linux-amd64.tar.gz 
+```
+移动到指定目录
+```sh
+mv prometheus-2.23.0.linux-amd64 /usr/local/prometheus
+```
+编辑service配置文件
+```sh
+cat /usr/lib/systemd/system/prometheus.service
+```
+service配置文件信息如下
+```sh
+[Unit]
+Description=Prometheus Server
+Documentation=https://prometheus.io/docs/introduction/overview/
+After=network-online.target
 
-
+[Service]
+User=prometheus
+Restart=on-failure
+ExecStart=/usr/local/prometheus/prometheus \
+  --config.file=/usr/local/prometheus/prometheus.yml \
+  --storage.tsdb.retention=30d \
+  --web.enable-admin-api    \
+  --storage.tsdb.path=/data/prometheus/data
+ExecReload=/bin/kill -HUP $MAINPID
+[Install]
+WantedBy=multi-user.target
+```
+设置prometheus开机自启动
+```sh
+systemctl enable prometheus
+```
+启动prometheus
+```sh
+systemctl start prometheus
+``` 
 主要组件
 ### node_exporter
 #### 安装
+下载
 ```sh
 wget https://github.com/prometheus/node_exporter/releases/download/v0.21.0/node_exporter-0.21.0.linux-amd64.tar.gz
 ```
+解压
 ```sh
 tar xvf node_exporter-0.21.0.linux-amd64.tar.gz
 ```
+移动到指定目录
 ```sh
 mv node_exporter-0.21.0.linux-amd64 /usr/local/node_exporter
 ```
+编辑service配置文件
 ```sh
 cat /usr/lib/systemd/system/node_exporter.service
 ```
+配置文件信息如下
 ```sh
 ```
 设置为开机自启动
@@ -31,16 +77,19 @@ systemctl start node_exporter
 ```
 ### blackbox_exporter
 #### 安装
-wget
+wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.18.0/blackbox_exporter-0.18.0.linux-amd64.tar.gz
 ### mysql_exporter
 #### 安装
-wget
+wget https://github.com/prometheus/mysqld_exporter/releases/download/v0.12.1/mysqld_exporter-0.12.1.linux-amd64.tar.gz
 ### consul
 #### 安装
-wget 
+下载
+```sh
+wget https://github.com/prometheus/consul_exporter/releases/download/v0.7.1/consul_exporter-0.7.1.linux-amd64.tar.gz
+```
 ## grafana
 #### 安装
-w
+
 ## alertmanager
 #### 安装
 下载
