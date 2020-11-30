@@ -21,6 +21,12 @@ cat /usr/lib/systemd/system/node_exporter.service
 ```
 ```sh
 ```
+```sh
+systemctl enable node_exporter
+```
+```sh
+systemctl start node_exporter
+```
 ### blackbox_exporter
 #### 安装
 wget
