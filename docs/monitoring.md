@@ -89,7 +89,23 @@ wget https://github.com/prometheus/consul_exporter/releases/download/v0.7.1/cons
 ```
 ## grafana
 #### 安装
-
+下载
+```sh
+wget https://dl.grafana.com/oss/release/grafana-7.3.4-1.x86_64.rpm
+```
+安装
+```sh
+yum install -y grafana-7.3.4-1.x86_64.rpm
+```
+```sh
+systemctl enable grafana-server
+```
+```sh
+systemctl start grafana-server
+```
+```sh
+systemctl status grafana-server
+```
 ## alertmanager
 #### 安装
 下载
