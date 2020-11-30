@@ -31,7 +31,6 @@ Restart=on-failure
 ExecStart=/usr/local/prometheus/prometheus \
   --config.file=/usr/local/prometheus/prometheus.yml \
   --storage.tsdb.retention=30d \
-  --web.enable-admin-api    \
   --storage.tsdb.path=/data/prometheus/data
 ExecReload=/bin/kill -HUP $MAINPID
 [Install]
@@ -75,6 +74,10 @@ systemctl enable node_exporter
 ```sh
 systemctl start node_exporter
 ```
+check
+```sh
+systemctl status node_exporter
+```
 ### blackbox_exporter
 #### 安装
 wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.18.0/blackbox_exporter-0.18.0.linux-amd64.tar.gz
@@ -97,12 +100,15 @@ wget https://dl.grafana.com/oss/release/grafana-7.3.4-1.x86_64.rpm
 ```sh
 yum install -y grafana-7.3.4-1.x86_64.rpm
 ```
+设置为开机自启动
 ```sh
 systemctl enable grafana-server
 ```
+启动grafana
 ```sh
 systemctl start grafana-server
 ```
+check
 ```sh
 systemctl status grafana-server
 ```
