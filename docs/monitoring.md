@@ -61,6 +61,18 @@ cat /usr/lib/systemd/system/alertmanager.service
 ```
 配置文件信息
 ```sh
+[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/node_exporter/node_exporter
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
 ```
 设置为开机自启动
 ```sh
