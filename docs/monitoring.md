@@ -55,3 +55,11 @@ mv alertmanager-0.21.0.linux-386.tar.gz /usr/local/alertmanager
 ```sh
 cat /usr/lib/systemd/system/alertmanager.service
 ```
+```sh
+```
+```sh
+systemctl enable alertmanager
+```
+```sh
+systemctl start alertmanager
+```
