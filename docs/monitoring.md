@@ -175,3 +175,7 @@ systemctl enable alertmanager
 ```sh
 systemctl start alertmanager
 ```
+check
+```
+systemctl status alertmanager
+```
