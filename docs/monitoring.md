@@ -156,28 +156,30 @@ systemctl status grafana-server
 ```sh
 yum install -y yum-utils
 ```
-```
+```sh
 yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 ```
-```
+安装
+```sh
 yum -y install consul
 ```
 启动consul
 ```
 consul agent -dev -client 0.0.0.0 -ui
 ```
+check
 ```sh
 lsof -i:8500
 ```
 注册服务
-```
+```sh
 curl -X PUT -d '{"id": "node-exporter","name": "node-exporter-192.168.7.245","address": "192.168.7.245","port": 9100,"tags": ["test"],"checks": [{"http": "http://192.168.7.245:9100/metrics", "interval": "5s"}]}'  http://192.168.7.245:8500/v1/agent/service/register 
 ```
 在web界面确认
 访问192.168.7.235:8500 确认consul
 访问192.168.7.245:9090 确认prometheus
 注销服务
-```
+```sh
 curl -X PUT http://192.168.7.245:8500/v1/agent/service/deregister/node-exporter 
 ```
 ## alertmanager
