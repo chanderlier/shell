@@ -1,7 +1,7 @@
 # 通过prometheus、grafana、alertmanager监控
 简单介绍如何通过prometheus、grafana、alertmanager实现对服务器性能的监控、可视化、告警等.  
 本次测试的服务器为centos7.7  
-IP地址： 192.168.7.245  
+IP地址：192.168.7.245  
 ## prometheus
 #### 安装prometheus
 下载
@@ -19,6 +19,16 @@ mv prometheus-2.23.0.linux-amd64 /usr/local/bin/prometheus
 编辑service配置文件
 ```sh
 cat /usr/lib/systemd/system/prometheus.service
+```
+创建prometheus用户、创建存储数据的文件夹、授权等
+```sh
+useradd prometheus
+```
+```sh
+mkdir -p /data/prometheus
+```
+```sh
+chown -R prometheus:prometheus /usr/local/bin/prometheus /data/prometheus
 ```
 service配置文件信息如下
 ```sh
@@ -106,6 +116,25 @@ tar zxvf blackbox_exporter-0.18.0.linux-amd64
 ```
 mv blackbox_exporter-0.18.0.linux-amd64 /usr/local/blackbox_exporter
 ```
+编辑service
+```sh
+cat /usr/lib/systemd/system/blackbox_exporter
+```
+service信息如下
+```sh
+[Unit]
+Description=blackbox_exporter
+After=network.target
+
+[Service]
+User=prometheus
+Restart=on-failure
+ExecStart=/usr/local/bin/blackbox_exporter/blackbox_exporter  --config.file=/usr/local/bin/blackbox_exporter/blackbox.yml 
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
 ### mysql_exporter
 #### 安装
 ```
@@ -117,7 +146,7 @@ tar zxvf mysqld_exporter-0.12.1.linux-amd64.tar.gz
 ```
 mv mysqld_exporter-0.12.1.linux-amd64 /usr/local/mysql_exporter
 ```
-### consul
+### consul_exportet
 #### 安装
 下载
 ```sh
@@ -231,3 +260,4 @@ check
 ```
 systemctl status alertmanager
 ```
+web访问 http://192.168.7.245:9100
