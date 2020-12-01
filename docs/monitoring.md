@@ -1,7 +1,7 @@
 # 通过prometheus、grafana、alertmanager监控
-简单介绍如何通过prometheus、grafana、alertmanager实现对服务器性能的监控、可视化、告警等
-本次测试的服务器为centos7.7
-IP地址： 192.168.7.245
+简单介绍如何通过prometheus、grafana、alertmanager实现对服务器性能的监控、可视化、告警等.  
+本次测试的服务器为centos7.7  
+IP地址： 192.168.7.245  
 ## prometheus
 #### 安装prometheus
 下载
@@ -48,6 +48,7 @@ check
 ```
 systemctl status prometheus
 ``` 
+web访问 http://192.168.7.245:9090
 主要组件
 ### node_exporter
 #### 安装
@@ -150,6 +151,9 @@ check
 ```sh
 systemctl status grafana-server
 ```
+web访问 http://192.168.7.245:3000
+username: admin
+password: admin
 ## consul
 #### 安装
 下载
