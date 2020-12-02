@@ -208,19 +208,143 @@ lsof -i:8500
 ```sh
 consul members
 ```
-注册服务
+通过systemd管理consul
 ```sh
-curl -X PUT -d '{"id": "node-exporter","name": "node-exporter-192.168.7.245","address": "192.168.7.245","port": 9100,"tags": ["test"],"checks": [{"http": "http://192.168.7.245:9100/metrics", "interval": "5s"}]}'  http://192.168.7.245:8500/v1/agent/service/register 
+cat /etc/consul.d/config.json
 ```
-在web界面确认  
-访问192.168.7.235:8500 确认consul  
-访问192.168.7.245:9090 确认prometheus  
-注销服务  
 ```sh
-curl -X PUT http://192.168.7.245:8500/v1/agent/service/deregister/node-exporter 
+{
+    "bootstrap_expect": 1.
+    "datacenter": "sibat_consul",
+    "data_dir": "/data/consul",
+    "server": true,
+    "client_addr": "0.0.0.0",
+    "ui": true,
+    "bind_addr": "192.168.7.245"
+}
+```
+consul.service
+```sh
+vim /usr/lib/systemd/system/consul.service 
+```
+配置信息如下
+```sh
+[Unit]
+Description="HashiCorp Consul - A service mesh solution"
+Documentation=https://www.consul.io/
+Requires=network-online.target
+After=network-online.target
+ConditionFileNotEmpty=/etc/consul.d/consul.hcl
+
+[Service]
+User=consul
+Group=consul
+ExecStart=/usr/bin/consul agent -config-file=/etc/consul.d/config.json
+ExecReload=/bin/kill --signal HUP $MAINPID
+KillMode=process
+KillSignal=SIGTERM
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+```
+```sh
+systemctl daemon-reload
+```
+```sh
+chown -R consul.consul /data/consul
+```
+```sh
+systemctl enable consul
+```
+```sh
+systemctl start consul
+```
+```sh
+systemctl status consul
+```
+```sh
+consul members
+```
+```sh
+cat node.json
+```
+```sh
+{
+  "ID": "node-exporter",
+  "Name": "node-exporter-192.168.7.245",
+  "Tags": [
+    "node-exporter"
+  ],
+  "Address": "192.168.7.245",
+  "Port": 9100,
+  "Meta": {
+    "app": "spring-boot",
+    "team": "appgroup",
+    "project": "bigdata"
+  },
+  "EnableTagOverride": false,
+  "Check": {
+    "HTTP": "http://192.168.7.245:9100/metrics",
+    "Interval": "10s"
+  },
+  "Weights": {
+    "Passing": 10,
+    "Warning": 1
+  }
+}
+```
+prometheus.yml
+```sh
+cat /usr/local/bin/prometheus/prometheus.yml
+```
+配置信息如下
+```sh
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+    - targets: ['localhost:9090']
+  - job_name: 'consul-prometheus'
+    consul_sd_configs:
+          - server: '192.168.7.245:8500'
+    relabel_configs:
+      - source_labels: [__meta_consul_tags]
+        regex: .*node-exporter.*
+        action: keep
+      - source_labels: [__meta_consul_service]
+        target_label: job
+```
+更新注册服务
+```sh
+curl --request PUT --data @node.json http://192.168.7.245:8500/v1/agent/service/register?replace-existing-checks=1
 ```
 坑  
-似乎最新的server端已经增加了一段时间不在线即注销对应的服务实例的操作，昨天晚上五点点注册的node-exporter-192.168.7.245，今天早上十点发现consul中已经消失  
+似乎最新的server端已经增加了一段时间不在线即注销对应的服务实例的操作，昨天晚上五点注册的node-exporter-192.168.7.245，今天早上十点发现consul中已经消失  
 ## alertmanager
 #### 安装
 下载
