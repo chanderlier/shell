@@ -204,6 +204,10 @@ check
 ```sh
 lsof -i:8500
 ```
+另开一个终端
+```sh
+consul members
+```
 注册服务
 ```sh
 curl -X PUT -d '{"id": "node-exporter","name": "node-exporter-192.168.7.245","address": "192.168.7.245","port": 9100,"tags": ["test"],"checks": [{"http": "http://192.168.7.245:9100/metrics", "interval": "5s"}]}'  http://192.168.7.245:8500/v1/agent/service/register 
@@ -215,6 +219,8 @@ curl -X PUT -d '{"id": "node-exporter","name": "node-exporter-192.168.7.245","ad
 ```sh
 curl -X PUT http://192.168.7.245:8500/v1/agent/service/deregister/node-exporter 
 ```
+坑  
+似乎最新的server端已经增加了一段时间不在线即注销对应的服务实例的操作，昨天晚上五点点注册的node-exporter-192.168.7.245，今天早上十点发现consul中已经消失  
 ## alertmanager
 #### 安装
 下载
