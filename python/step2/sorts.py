@@ -3,21 +3,23 @@ def select_sort(items, comp=lambda x, y: x < y):
     items = items[:]
     # for i in range(6 -1)
     for i in range(len(items) - 1):
-        # 最小索引设置为1
-        min_index = 1
-        # for j in range(i + 1 , 6)
+        # 最小索引设置为i
+        min_index = i
+        # for j in range(i + 1, 6)
         for j in range(i + 1, len(items)):
             # 比较items[j]和items[min_index]的大小
             if comp(items[j], items[min_index]):
                 # 如果 items[j] < items[min_index],则将j赋值给min_index
                 min_index = j
         # items[i], items[min_index]的值互换
-        items[i], items[min_index] = items[min_index], items[i]
+        if i != min_index:
+            items[i], items[min_index] = items[min_index], items[i]
     return items
 
 
 if __name__ == "__main__":
-    list1 = [123, 434, 222, 333, 233, 888, 1234565]
+    list1 = [123, 345, 234, 343]
+    # list1 = [123, 434, 222, 333, 233, 888, 1234565]
     print(select_sort(list1))
 
 

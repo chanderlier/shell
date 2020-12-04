@@ -12,5 +12,5 @@ def bubble_sort(items, comp=lambda x, y: x > y):
 
 
 if __name__ == "__main__":
-    list1 = [312, 42342, 232, 43]
-    print(bubble_sort(list1))
+    items = [312, 42342, 232, 43]
+    print(bubble_sort(items))
