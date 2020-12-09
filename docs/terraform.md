@@ -164,22 +164,22 @@ module "ram_user" {
 ```sh
 mkdir -p terraform/oss/dieser
 ```
-创建身份认证信息
+创建身份认证信息  
 ```sh
 cat terraform/oss/dieser/provider.tf
 ```
 ```sh
 provider "alicloud" {
     region           = "cn-shanghai"
-    access_key  = "LTA**********NO2"
-    secret_key   = "MOk8x0*********************wwff"
+    access_key       = "LTA**********NO2"
+    secret_key       = "MOk8x0*********************wwff"
 }
 ```
-初始化
+初始化  
 ```sh
 terraform init
 ```
-创建编排模板
+创建编排模板  
 ```sh
 cat terraform/oss/project/terraform.tf
 ```
