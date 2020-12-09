@@ -187,7 +187,6 @@ cat terraform/oss/project/terraform.tf
 ```sh
 resource "alicloud_ram_user" "user" {
   name         = "chuancheng.zhou"          # 用户名
-  email        = "chuancheng.zhou@tarsocial.com" # 邮箱
   comments     = "yahoo"
   force        = true    
 }
