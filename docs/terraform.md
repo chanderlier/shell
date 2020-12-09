@@ -158,3 +158,82 @@ module "ram_user" {
    is_admin = true
  }
 ``` 
+
+以创建一个ram用户 chuancheng.zhou，授权chuancheng.zhou可以查看和下载oss  bucket refrain1234内的所有内容为例子
+创建terraform目录
+```sh
+mkdir -p terraform/oss/chuancheng.zhou
+```
+创建身份认证信息
+```sh
+cat terraform/oss/chuancheng.zhou/provider.tf
+```
+```sh
+provider "alicloud" {
+    region           = "cn-shanghai"
+    access_key  = "LTA**********NO2"
+    secret_key   = "MOk8x0*********************wwff"
+}
+```
+初始化
+```sh
+terraform init
+```
+创建编排模板
+```sh
+cat terraform/oss/project/terraform.tf
+```
+
+```sh
+resource "alicloud_ram_user" "user" {
+  name         = "chuancheng.zhou"          # 用户名
+  email        = "chuancheng.zhou@tarsocial.com" # 邮箱
+  comments     = "yahoo"
+  force        = true    
+}
+resource "alicloud_ram_access_key" "ak" {
+  user_name   = alicloud_ram_user.user.name
+  secret_file = "accesskey.txt"                # 保存AccessKey的文件名
+}
+resource "alicloud_ram_policy" "policy" {
+  name     = "dieserpolicy"
+  document = <<EOF
+  {
+    "Statement": [
+      {
+        "Action": [
+          "oss:ListObjects", # 可以通过ossutils或者ossbrower查看指定BUCKET中的内容
+          "oss:GetObject"   # 可以下载文件，如果需要上传文件的话，需要增加一个 oss:PutObject权限
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "acs:oss:*:*:refrain1234",
+          "acs:oss:*:*:refrain1234/*"
+        ]
+      }
+    ],
+      "Version": "1"
+  }
+  EOF
+  description = "this is a policy test"
+  force = true
+}
+# 将ram.user和policy绑定
+resource "alicloud_ram_user_policy_attachment" "attach" {
+  policy_name = alicloud_ram_policy.policy.name
+  policy_type = alicloud_ram_policy.policy.type
+  user_name   = alicloud_ram_user.user.name
+}
+```
+预览编排结果
+```sh
+terraform plan
+```
+应用
+```sh
+terraform apply
+```
+确认
+```sh
+value: yes
+```
