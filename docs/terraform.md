@@ -159,14 +159,14 @@ module "ram_user" {
  }
 ``` 
 ### OSS授权
-以创建一个ram用户 chuancheng.zhou，授权chuancheng.zhou可以查看和下载oss  bucket refrain1234内的所有内容为例子  
+以创建一个ram用户 dieser，授权dieser可以查看和下载oss  bucket refrain1234内的所有内容为例子  
 创建terraform目录  
 ```sh
-mkdir -p terraform/oss/chuancheng.zhou
+mkdir -p terraform/oss/dieser
 ```
 创建身份认证信息
 ```sh
-cat terraform/oss/chuancheng.zhou/provider.tf
+cat terraform/oss/dieser/provider.tf
 ```
 ```sh
 provider "alicloud" {
@@ -186,7 +186,7 @@ cat terraform/oss/project/terraform.tf
 
 ```sh
 resource "alicloud_ram_user" "user" {
-  name         = "chuancheng.zhou"          # 用户名
+  name         = "dieser"          # 用户名
   comments     = "yahoo"
   force        = true    
 }
