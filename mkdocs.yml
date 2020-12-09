@@ -8,3 +8,4 @@ pages:
 - WordPress: wordpress.md
 - CICD: cicd.md
 - monitoring: monitoring.md
+- Python: python.md

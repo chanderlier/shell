@@ -1,4 +1,4 @@
-fish = 6 
+fish = 6
 while True:
     total = fish
     enough = True
