@@ -17,7 +17,7 @@ trusted-host=mirrors.cloud.aliyuncs.com
 ```
 暂时使用
 ```sh
-pip3 install -r requirement -i http://mirrors.cloud.aliyuncs.com/pypi/simple/
+pip3 install -r requirements.txt -i http://mirrors.cloud.aliyuncs.com/pypi/simple/
 ```
 ```sh
 pip3 install mysqlclient -i http://mirrors.cloud.aliyuncs.com/pypi/simple/
