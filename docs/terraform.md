@@ -236,3 +236,18 @@ terraform apply
 ```sh
 value: yes
 ```
+terraform创建一个bucket dieser-test，指定为公共读，同时创建一个目录test
+```sh
+resource "alicloud_oss_bucket" "bucket" {
+        bucket = "dieser-test"
+        acl    = "public-read"
+}
+
+resource "alicloud_oss_bucket_object" "object-source" {
+        bucket  = "dieser-test"
+        key     = "test/"
+        content = "test-folder"
+
+}
+
+```
