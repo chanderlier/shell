@@ -2,7 +2,7 @@ FormatVersion: OOS-2019-06-01
 Description:
   en: release EIPs.
   zh-cn: 批量解除绑定弹性公网IP（EIP）。
-  name-en: ACS-ECS-BulkyAllocateAndAssociateEipAddress
+  name-en: ACS-ECS-ReleaseEipAddress
   name-zh-cn: 批量解除绑定弹性公网IP（EIP）
   categories:
     - instance_manage
