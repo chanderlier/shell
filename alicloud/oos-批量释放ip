@@ -1,0 +1,70 @@
+FormatVersion: OOS-2019-06-01
+Description:
+  en: release EIPs.
+  zh-cn: 批量解除绑定弹性公网IP（EIP）。
+  name-en: ACS-ECS-BulkyAllocateAndAssociateEipAddress
+  name-zh-cn: 批量解除绑定弹性公网IP（EIP）
+  categories:
+    - instance_manage
+Parameters:
+  regionId:
+    Type: String
+    Description:
+      name-en: regionId
+      name-zh-cn: 地域ID
+      en: The id of region.
+      zh-cn: 地域ID。
+    AssociationProperty: RegionId
+    Default: '{{ ACS::RegionId }}'
+  instanceIds:
+    Description:
+      name-en: instanceIds
+      name-zh-cn: 要解除绑定EIP的实例ID列表
+      en: The ID list of the instance to be associated with the Elastic IP address.
+      zh-cn: 要解除绑定EIP的实例ID列表。
+    Type: List
+  instanceType:
+    Description:
+      name-en: instanceType
+      name-zh-cn: 要解除绑定EIP的实例的类型
+      en: The type of the cloud product instance to release.
+      zh-cn: 要解除绑定EIP的实例的类型.
+    Type: String
+    AllowedValues:
+      - Nat
+      - SlbInstance
+      - EcsInstance
+      - NetworkInterface
+      - HaVip
+    Default: EcsInstance
+  rateControl:
+    Description:
+      name-en: rateControl
+      name-zh-cn: 任务执行的并发比率
+      en: Concurrency rate of task execution.
+      zh-cn: 任务执行的并发比率。
+    Type: Json
+    AssociationProperty: RateControl
+    Default:
+      Mode: Concurrency
+      MaxErrors: 0
+      Concurrency: 15
+  OOSAssumeRole:
+    Description:
+      en: The RAM role to be assumed by OOS.
+      zh-cn: OOS扮演的RAM角色。
+    Type: String
+    Default: OOSServiceRole
+RamRole: '{{ OOSAssumeRole }}'
+Tasks:
+  - Name: releaseEipAddress
+    Action: 'ACS::ECS::ReleaseEipAddress'
+    Description:
+      en: release Eip address from instance.
+      zh-cn: 将弹性公网IP（EIP）解除绑定。
+    Properties:
+      regionId: '{{ regionId }}'
+      instanceId: '{{ ACS::TaskLoopItem }}'
+    Loop:
+      RateControl: '{{ rateControl }}'
+      Items: '{{ instanceIds }}'
