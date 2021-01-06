@@ -13,7 +13,7 @@ request = ConvertNatPublicIpToEipRequest()
 request.set_accept_format('json')
 for host in vhosts.split('\n'):
     try:
-        request.set_InstanceId("i-m5ecelicizfkw19lmypm")
+        request.set_InstanceId(host)
         response = client.do_action_with_exception(request)
         print(str(response, encoding='utf-8'))
     except Exception as e:
