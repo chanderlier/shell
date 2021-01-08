@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 import random
 
+
 def generate_code(code_len=6):
-    all_chars= '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    all_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     last_pos = len(all_chars) - 1
     code = ''
     for _ in range(code_len):
@@ -10,5 +11,8 @@ def generate_code(code_len=6):
         code += all_chars[index]
     return code
 
+
 if __name__ == '__main__':
-    print('code:',generate_code())
+    print('code:', generate_code())
+
+

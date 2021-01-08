@@ -6,6 +6,7 @@ def is_palindrome(num):
         temp //= 10
     return total == num
 
+
 def is_prime(num):
     for factor in range(2, int(num ** 0.5) +1):
         if num % factor == 0:
