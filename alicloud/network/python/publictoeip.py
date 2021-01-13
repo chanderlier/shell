@@ -1,7 +1,8 @@
 from aliyunsdkcore.client import AcsClient
 from aliyunsdkcore.acs_exception.exceptions import ClientException
 from aliyunsdkcore.acs_exception.exceptions import ServerException
-from aliyunsdkecs.request.v20140526.ConvertNatPublicIpToEipRequest import ConvertNatPublicIpToEipRequest
+from aliyunsdkecs.request.v20140526.ConvertNatPublicIpToEipRequest \
+    import ConvertNatPublicIpToEipRequest
 
 
 vhosts = """i-m5ecelicizfkw19lmypn
