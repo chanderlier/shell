@@ -6,7 +6,7 @@ wget https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd6
 unzip terraform_0.13.5_linux_amd64.zip
 ```
 ```sh
-mv 
+mv terraform /usr/local/bin/terraform
 ```
 通过terraform快速创建一个ECS实例，并设置好相应的服务,例如VPC
 resource "alicloud_vpc" "vpc" {
