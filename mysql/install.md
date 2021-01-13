@@ -18,7 +18,7 @@ grep "password" /var/log/mysqld.log
 ```
 
 mysql57
-reset passwd
+mysql -uroot -p
 set password = password('newpassword')
 
 grant all privileges on *.* to root@"%" identified by "newpassword";
