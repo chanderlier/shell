@@ -34,9 +34,5 @@ cursor.execute(sql2)
 cursor.execute(sql3)
 cursor.execute(sql4)
 cursor.execute(sql5)
- 
-# 关闭光标对象
 cursor.close()
- 
-# 关闭数据库连接
 conn.close()
