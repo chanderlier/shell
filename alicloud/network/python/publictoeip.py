@@ -17,4 +17,4 @@ for host in vhosts.split('\n'):
         response = client.do_action_with_exception(request)
         print(str(response, encoding='utf-8'))
     except Exception as e:
-        print('error = ' , e)
+        print('error = ', e)
