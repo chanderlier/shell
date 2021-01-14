@@ -1,6 +1,7 @@
 import tkinter
 import tkinter.messagebox
 
+
 def main():
     flag = True
 
@@ -9,14 +10,13 @@ def main():
         flag = not flag
         color, msg = ('red', 'Hello,World!') \
             if flag else ('blue', 'Goodbye,world!')
-        label.config(text=msg,fg=color)
+        label.config(text=msg, fg=color)
 
     def confirm_to_quit():
-        if tkinter.messagebox.askokcancel('warnning','make sure that you want to quit?'):
+        if tkinter.messagebox.askokcancel('warnning', 'make sure that you want to quit?'):
             top.quit()
 
     top = tkinter.Tk()
-
 
     top.geometry('240x160')
 
@@ -34,6 +34,7 @@ def main():
     panel.pack(side='bottom')
 
     tkinter.mainloop()
+
 
 if __name__ == '__main__':
     main()

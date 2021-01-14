@@ -1,9 +1,11 @@
 import pymysql
+
+
 def main():
     no = int(input('编号： '))
     name = input('名字: ')
     local = input('所在地: ')
-     con = pymysql.connect(host='localhost', port=3306,
+    con = pymysql.connect(host='localhost', port=3306,
                           database='hrs', charset='utf8',
                           user='yourname', password='yourpass')
     try:

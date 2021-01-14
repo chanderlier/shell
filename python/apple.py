@@ -12,4 +12,4 @@ fm_n = 1
 
 for num in range(1, m - n + 1):
     fm_n *= num
-print(fm // fn //fm_n)
+print(fm // fn // fm_n)

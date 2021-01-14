@@ -1,5 +1,3 @@
-#/usr/bin/python3
-
 x = int(input('number = '))
 fz = 0
 while x > 0:
