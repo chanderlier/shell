@@ -16,6 +16,8 @@ def bubble_sort(items, comp=lambda x, y:x > y):
             break
     return items
 '''
+
+
 def bubble_sort(items, comp=lambda x, y: x > y):
     """搅拌排序(冒泡排序升级版)"""
     items = items[:]
@@ -34,6 +36,8 @@ def bubble_sort(items, comp=lambda x, y: x > y):
         if not swapped:
             break
     return items
+
+
 if __name__ == "__main__":
-    items = [13,435435,345,34534534,5345,32553]
+    items = [13, 435435, 345, 34534534, 5345, 32554]
     print(bubble_sort(items))

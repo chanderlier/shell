@@ -1,7 +1,7 @@
 import sys
 import time
 
-SIZE = 5 
+SIZE = 5
 total = 0
 
 
@@ -13,9 +13,8 @@ def print_board(board):
 
 
 def patrol(board, row, col, step=1):
-    if row >= 0 and row < SIZE and \
-        col >= 0 and col < SIZE and \
-        board[row][col] == 0:
+    if row >= 0 and row < SIZE and col >= 0 and col < SIZE and board[row][col]
+    == 0:
         board[row][col] = step
         if step == SIZE * SIZE:
             global total
