@@ -1,0 +1,16 @@
+ssh 分为client和server
+通常登录服务器的方式，秘钥和密码
+密码登录
+ssh root@ip
+输入密码
+秘钥登录
+ssh-keygen -t rsa -C "备注" 创建秘钥
+将id_rsa.pub 拷贝到目标服务器的。ssh/authorized_keys内
+ssh -i id_rsa root@ip
+服务器无法通过ssh访问的原因：
+服务器禁止ssh登录：
+    - 包括防火墙设置端口、安全组入网规则、ip白名单之类的
+    - etc/hosts.deny 设置了deny：all
+访问方式不正确：
+    - 密码或者秘钥文件错误
+    - 端口被修改了。比如服务器默认ssh端口为22，修改成22222 此时需要ssh -p root@ip 
