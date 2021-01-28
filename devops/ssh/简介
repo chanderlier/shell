@@ -13,4 +13,16 @@ ssh -i id_rsa root@ip
     - etc/hosts.deny 设置了deny：all
 访问方式不正确：
     - 密码或者秘钥文件错误
-    - 端口被修改了。比如服务器默认ssh端口为22，修改成22222 此时需要ssh -p root@ip 
+    - 端口被修改了。比如服务器默认ssh端口为22，修改成22222 此时需要ssh -pport root@ip 
+
+排查方法：
+    - 判断物理链路是否通  
+    ping 192.168.25.130     线路 | 防火墙 | 是否同一个网的
+    - 判断服务是否正常
+    telnet 192.168.25.130 22
+    - Linux防火墙
+    service iptables status ==>  /etc/init.d/iptables status　　
+    - 打开ssh的调测进行观察
+    ssh -vvv omd@192.168.1.100
+    - 查看配置文件
+    cat /etc/hosts.deny
