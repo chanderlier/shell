@@ -1,3 +1,17 @@
+安装
+```sh
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
+```
+```sh
+rpm -ivh minikube-latest.x86_64.rpm
+```
+```sh
+minikube start \
+    --image-mirror-country=cn \
+    --registry-mirror=https://4wgtxa6q.mirror.aliyuncs.com \
+    --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers \
+    --iso-url=https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/iso/minikube-v1.20.0.iso
+```
 ```sh
 minikube addons list
 ```
