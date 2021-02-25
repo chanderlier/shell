@@ -391,3 +391,52 @@ check
 systemctl status alertmanager
 ```
 web访问 http://192.168.7.245:9100
+
+
+
+jdk版本 java-1.8
+
+$ yum install -y java-1.8.0-openjdk-devel.x86_64
+$ scp root@10.0.10.168:/root/kafka_2.13-2.7.0.tgz .
+$ tar -xzf kafka_2.13-2.7.0.tgz
+$ cd kafka_2.13-2.7.0
+$ bin/zookeeper-server-start.sh config/zookeeper.properties
+another terminal
+$ bin/kafka-server-start.sh config/server.properties
+another terminal
+
+/usr/lib/systemd/system/zookeeper.service
+[Unit]
+Description=Zookeeper Service unit Configuration
+After=network.target
+
+[Service]
+Type=forking
+Environment=JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ExecStart=/opt/zookeeper/bin/zkServer.sh start /opt/zookeeper/conf/zoo.cfg
+ExecStop=/opt/zookeeper/bin/zkServer.sh stop
+PIDFile=/tmp/zookeeper/zookeeper_server.pid
+KillMode=none
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target
+
+/usr/lib/systemd/system/kafka.service
+[Unit]
+Description=Apache Kafka server (broker)
+Documentation=http://kafka.apache.org/documentation.html
+Requires=zookeeper.service
+
+ 
+
+[Service]
+Type=simple
+ExecStart=/alidata/server/kafka/bin/kafka-server-start.sh /alidata/server/kafka/config/server.properties
+ExecStop=/alidata/server/kafka/bin/kafka-server-stop.sh
+Restart=on-failure
+
+ 
+
+[Install]
+
+WantedBy=multi-user.target
