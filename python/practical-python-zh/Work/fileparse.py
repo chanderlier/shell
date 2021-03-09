@@ -1,6 +1,12 @@
+<<<<<<< HEAD
+#!/usr/bin/python3
+import csv
+
+=======
 import csv
 
 
+>>>>>>> 6b1021d9d3d598f4bee7db58e54bca1456c0983b
 def parse_csv(filename, select=None, types=None, has_headers=True, delimiter=',', silence_errors=False):
     '''
     Parse a CSV file into a list of records with type conversion.
@@ -16,7 +22,11 @@ def parse_csv(filename, select=None, types=None, has_headers=True, delimiter=','
 
         # If specific columns have been selected, make indices for filtering and set output columns
         if select:
+<<<<<<< HEAD
+            indices = [ headers.index(colname) for colname in select ]
+=======
             indices = [headers.index(colname) for colname in select]
+>>>>>>> 6b1021d9d3d598f4bee7db58e54bca1456c0983b
             headers = select
 
         records = []
@@ -26,7 +36,11 @@ def parse_csv(filename, select=None, types=None, has_headers=True, delimiter=','
 
             # If specific column indices are selected, pick them out
             if select:
+<<<<<<< HEAD
+                row = [ row[index] for index in indices]
+=======
                 row = [row[index] for index in indices]
+>>>>>>> 6b1021d9d3d598f4bee7db58e54bca1456c0983b
 
             # Apply type conversion to the row
             if types:
@@ -46,6 +60,9 @@ def parse_csv(filename, select=None, types=None, has_headers=True, delimiter=','
             records.append(record)
 
         return records
+<<<<<<< HEAD
+=======
 
 
 print(parse_csv('python\practical-python-zh\Work\Data\missing.csv', types=[str, int, float]))
+>>>>>>> 6b1021d9d3d598f4bee7db58e54bca1456c0983b
