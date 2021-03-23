@@ -10,6 +10,7 @@ from alibabacloud_vpc20160428.client import Client as Vpc20160428Client
 from alibabacloud_tea_openapi import models as open_api_models
 from alibabacloud_vpc20160428 import models as vpc_20160428_models
 
+
 def clearoldiplist():
     r = redis.Redis(host='10.0.3.100', port=6379, db=7, password='EfcHGSzKqg6cfzWq')
     r.delete('ali_proxies')
@@ -19,13 +20,15 @@ def writeiptoredis():
     r = redis.Redis(host='10.0.3.100', port=6379, db=7, password='EfcHGSzKqg6cfzWq')
     with open('eiplist.txt', 'r') as f:
         iplist = f.readlines()
-        iplists = [x.strip() for x in iplist if x.strip() !="" ]
+        iplists = [x.strip() for x in iplist if x.strip() != ""]
         for i in iplists:
             r.sadd('ali_proxies', i)
 
+
 def truncatefile():
-    f=open('eiplist.txt', 'w')
+    f = open('eiplist.txt', 'w')
     f.truncate()
+    f.close()
 
 
 def read_file(path):
@@ -37,13 +40,14 @@ def read_file(path):
 
 def parse_data(data_dict):
 
-    data_counts=len(data_dict.get('body').get('EipAddresses').get('EipAddress'))
+    data_counts = len(data_dict.get('body').get('EipAddresses').get('EipAddress'))
     for item in range(data_counts):
-        temp_list=[]
+        temp_list = []
         ip = data_dict.get('body').get('EipAddresses').get('EipAddress')[item].get('IpAddress')
         temp_list.append(ip)
         with open('eiplist.txt', 'a') as f:
             f.write('-'.join(temp_list) + '\n')
+
 
 class Sample:
     def __init__(self):
@@ -97,6 +101,7 @@ class Sample:
         )
         await client.describe_eip_addresses_async(describe_eip_addresses_request)
 
+
 class Sample2:
     def __init__(self):
         pass
@@ -148,6 +153,8 @@ class Sample2:
             page_number=2
         )
         await client.describe_eip_addresses_async(describe_eip_addresses_request)
+
+
 class Sample3:
     def __init__(self):
         pass
@@ -206,11 +213,11 @@ if __name__ == '__main__':
     Sample2.main(sys.argv[1:])
     Sample3.main(sys.argv[1:])
     truncatefile()
-    data_dict=read_file('eiplist.json')
+    data_dict = read_file('eiplist.json')
     parse_data(data_dict)
-    data_dict=read_file('eiplist_2.json')
+    data_dict = read_file('eiplist_2.json')
     parse_data(data_dict)
-    data_dict=read_file('eiplist_3.json')
+    data_dict = read_file('eiplist_3.json')
     parse_data(data_dict)
     clearoldiplist()
     writeiptoredis()

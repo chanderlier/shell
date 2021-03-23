@@ -4,7 +4,7 @@ wget https://github.com/aliyun/aliyun-cli/releases/download/v3.0.62/aliyun-cli-l
 ```
 解压
 ```sh
-tartar xzvf aliyun-cli-linux-3.0.62-amd64.tgz
+tar -xzvf aliyun-cli-linux-3.0.62-amd64.tgz
 ```
 执行如下命令，将aliyun程序移动到到/usr/local/bin目录中。
 ```sh
