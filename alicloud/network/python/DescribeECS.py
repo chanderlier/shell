@@ -10,12 +10,13 @@ from alibabacloud_tea_openapi import models as open_api_models
 from alibabacloud_ecs20140526 import models as ecs_20140526_models
 
 
+# 清空ecsidlist.txt
 def truncatefile():
-    f = open('ecsidlist.txt', 'w')
-    f.truncate()
-    f.close()
+    with open('ecsidlist.txt', 'w') as f:
+        f.truncate()
 
 
+# 读取文件，将文件中的值写入到data_dict中
 def read_file(path):
     with open(path, 'r') as f:
         data = f.read()
@@ -23,6 +24,7 @@ def read_file(path):
     return data_dict
 
 
+# 提取instance id 写入到ecsidlist.txt中
 def parse_data(data_dict):
     data_counts = len(data_dict.get('body').get('Instances').get('Instance'))
     for item in range(data_counts):
@@ -50,12 +52,9 @@ class DescribeEcsInfo:
         @throws Exception
         """
         config = open_api_models.Config(
-            # 您的AccessKey ID,
             access_key_id=access_key_id,
-            # 您的AccessKey Secret,
             access_key_secret=access_key_secret,
         )
-        # 访问的域名
         config.endpoint = 'ecs-cn-hangzhou.aliyuncs.com'
         return Ecs20140526Client(config)
 
@@ -68,7 +67,6 @@ class DescribeEcsInfo:
             region_id='cn-shanghai',
             page_size=100
         )
-        # 复制代码运行请自行打印 API 的返回值
         client.describe_instances(describe_instances_request)
         ecs_json = client.describe_instances(describe_instances_request)
         with open('ecsidlist.json', 'w') as f:

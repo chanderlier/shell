@@ -7,11 +7,11 @@ from typing import List
 from alibabacloud_ecs20140526.client import Client as Ecs20140526Client
 from alibabacloud_tea_openapi import models as open_api_models
 from alibabacloud_ecs20140526 import models as ecs_20140526_models
-
+# 将nilist.txt中的内容写入到nilist列表中
 with open('nilist.txt', 'r') as f:
     niid = f.readlines()
     nilist = [x.strip() for x in niid if x.strip() != '']
-
+# 将ecsidlist.txt中的内容写入到ecsidlist列表中
 with open('ecsidlist.txt', 'r') as f:
     ecsid = f.readlines()
     ecsidlist = [x.strip() for x in ecsid if x.strip() != '']
@@ -34,12 +34,9 @@ class AttachNetworkIntertoECS:
         @throws Exception
         """
         config = open_api_models.Config(
-            # 您的AccessKey ID,
             access_key_id='xxx',
-            # 您的AccessKey Secret,
             access_key_secret='xxx',
         )
-        # 访问的域名
         config.endpoint = 'ecs-cn-hangzhou.aliyuncs.com'
         return Ecs20140526Client(config)
 

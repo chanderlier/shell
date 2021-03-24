@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # This file is auto-generated, don't edit it. Thanks.
+# 获取指定地区，指定弹性网卡的ID信息，写入到nilist.txt中
 import sys
 import ast
 from typing import List

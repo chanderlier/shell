@@ -192,7 +192,7 @@ class Sample3:
             page_number=3
         )
         client.describe_eip_addresses(describe_eip_addresses_request)
-        eip_json = client.describe_eip_addresses(describe_eip_addresses_request)
+        eip_json = client.describeeip_addresses(describe_eip_addresses_request)
         with open('eiplist_3.json', 'w') as f:
             print(eip_json, file=f)
     @staticmethod

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # This file is auto-generated, don't edit it. Thanks.
-# 运行脚本，批量创建辅助弹性网卡
+# 运行脚本，批量创建辅助弹性网卡,弹性网卡数量由networkinterface_numbers指定，该弹性网卡仅包含一个IP地址
 import sys
 
 from typing import List
@@ -41,31 +41,31 @@ class Sample:
         args: List[str],
     ) -> None:
         client = Sample.create_client('accessKeyId', 'accessKeySecret')
-        create_network_interface_request = ecs_20140526_models.CreateNetworkInterfaceRequest(
-            region_id='cn-shanghai',
-            v_switch_id='vsw-uf6fokgzfvpkjryb774sa',
-            security_group_id='sg-uf68lxrsj3h2ru2w8pf4',
-            secondary_private_ip_address_count=1
-        )
-        # 复制代码运行请自行打印 API 的返回值
-        client.create_network_interface(create_network_interface_request)
+        networkinterface_numbers = 100
+        for i in range(len(networkinterface_numbers)):
+            create_network_interface_request = ecs_20140526_models.CreateNetworkInterfaceRequest(
+                region_id='cn-shanghai',
+                v_switch_id='vsw-uf6fokgzfvpkjryb774sa',
+                security_group_id='sg-uf68lxrsj3h2ru2w8pf4',
+                # secondary_private_ip_address_count=1
+            )
+            client.create_network_interface(create_network_interface_request)
 
     @staticmethod
     async def main_async(
         args: List[str],
     ) -> None:
         client = Sample.create_client('accessKeyId', 'accessKeySecret')
-        create_network_interface_request = ecs_20140526_models.CreateNetworkInterfaceRequest(
-            region_id='cn-shanghai',
-            v_switch_id='vsw-uf6fokgzfvpkjryb774sa',
-            security_group_id='sg-uf68lxrsj3h2ru2w8pf4',
-            secondary_private_ip_address_count=1
-        )
-        # 复制代码运行请自行打印 API 的返回值
-        await client.create_network_interface_async(create_network_interface_request)
+        networkinterface_numbers = 100
+        for i in range(len(networkinterface_numbers)):
+            create_network_interface_request = ecs_20140526_models.CreateNetworkInterfaceRequest(
+                region_id='cn-shanghai',
+                v_switch_id='vsw-uf6fokgzfvpkjryb774sa',
+                security_group_id='sg-uf68lxrsj3h2ru2w8pf4',
+                # secondary_private_ip_address_count=1
+            )
+            await client.create_network_interface_async(create_network_interface_request)
 
 
 if __name__ == '__main__':
-    numbers = 50
-    for i in range(numbers):
-        Sample.main(sys.argv[1:])
+    Sample.main(sys.argv[1:])

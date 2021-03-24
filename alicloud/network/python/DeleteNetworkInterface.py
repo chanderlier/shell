@@ -46,12 +46,12 @@ class Sample:
         args: List[str],
     ) -> None:
         client = Sample.create_client('accessKeyId', 'accessKeySecret')
+        # 删除nilist中的弹性网卡
         for i in range(len(nilist)):
             delete_network_interface_request = ecs_20140526_models.DeleteNetworkInterfaceRequest(
                 region_id='cn-shanghai',
                 network_interface_id=nilist[i]
             )
-        # 复制代码运行请自行打印 API 的返回值
             client.delete_network_interface(delete_network_interface_request)
 
     @staticmethod

@@ -1,3 +1,4 @@
+# 将实例的公网IP转化为EIP
 from aliyunsdkcore.client import AcsClient
 from aliyunsdkcore.acs_exception.exceptions import ClientException
 from aliyunsdkcore.acs_exception.exceptions import ServerException

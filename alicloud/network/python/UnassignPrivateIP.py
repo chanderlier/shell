@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # This file is auto-generated, don't edit it. Thanks.
+# 释放弹性网卡的私网IP
 import sys
 
 from typing import List
@@ -50,7 +51,6 @@ class Sample:
                 region_id='cn-shanghai',
                 network_interface_id=nilist[i]
             )
-        # 复制代码运行请自行打印 API 的返回值
         client.unassign_private_ip_addresses(unassign_private_ip_addresses_request)
 
     @staticmethod
@@ -63,7 +63,6 @@ class Sample:
                 region_id='cn-shanghai',
                 network_interface_id=nilist[i]
             )
-        # 复制代码运行请自行打印 API 的返回值
             await client.unassign_private_ip_addresses_async(unassign_private_ip_addresses_request)
 
 
