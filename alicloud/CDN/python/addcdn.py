@@ -1,20 +1,13 @@
 import json
 from time import sleep
 from aliyunsdkcore.client import AcsClient
-from aliyunsdkalidns.request.v20150109.AddDomainRecordRequest
-import AddDomainRecordRequest
-from aliyunsdkcdn.request.v20180510.AddCdnDomainRequest
-import AddCdnDomainRequest
-from aliyunsdkcdn.request.v20180510.DescribeCdnDomainDetailRequest
-import DescribeCdnDomainDetailRequest
-from aliyunsdkcdn.request.v20180510.SetSourceHostConfigRequest
-import SetSourceHostConfigRequest
-from aliyunsdkcdn.request.v20180510.DescribeUserDomainsRequest
-import DescribeUserDomainsRequest
-from aliyunsdkcdn.request.v20180510.DeleteCdnDomainRequest
-import DeleteCdnDomainRequest
-from aliyunsdkcdn.request.v20180510.DescribeVerifyContentRequest
-import DescribeVerifyContentRequest
+from aliyunsdkalidns.request.v20150109.AddDomainRecordRequest import AddDomainRecordRequest
+from aliyunsdkcdn.request.v20180510.AddCdnDomainRequest import AddCdnDomainRequest
+from aliyunsdkcdn.request.v20180510.DescribeCdnDomainDetailRequest import DescribeCdnDomainDetailRequest
+from aliyunsdkcdn.request.v20180510.SetSourceHostConfigRequest import SetSourceHostConfigRequest
+from aliyunsdkcdn.request.v20180510.DescribeUserDomainsRequest import DescribeUserDomainsRequest
+from aliyunsdkcdn.request.v20180510.DeleteCdnDomainRequest import DeleteCdnDomainRequest
+from aliyunsdkcdn.request.v20180510.DescribeVerifyContentRequest import DescribeVerifyContentRequest
 import logging
 
 logging.basicConfig(level=logging.INFO,
