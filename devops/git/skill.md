@@ -1,4 +1,5 @@
-从已有代码的目录上传代码到远程git仓库
+## 代码同步
+### 从已有代码的目录上传代码到远程git仓库
 git init //生成.git目录
 gitk  add . //把当前目录里的文件加入到暂存区
 git commit -m '上传' //从暂存区提交到仓库
@@ -55,7 +56,7 @@ git reset HEAD .  或者
 git reset HEAD a.txt
 
 
-3、git commit到本地分支、但没有git push到远程
+3、git commit到本地分支、但没有git push到远程。在提交git commit时，message最好能够详细的记录这次提交的信息，以便后续任何情况需要回滚时，能快速确定id。
 
 git log # 得到你需要回退一次提交的commit id
 git reset --hard <commit_id>  # 回到其中你想要的某个版
