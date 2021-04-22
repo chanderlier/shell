@@ -40,9 +40,9 @@ main        # 全局配置，对全局生效
 ```
 
 ```bash
-user  nginx;                        # 运行用户，默认即是nginx，可以不进行设置
+user  nginx;                        # 运行用户，默认即是nginx，可以不进行设置,如果和php一起使用，按需要改成www之类的
 worker_processes  1;                # Nginx 进程数，一般设置为和 CPU 核数一样
-error_log  /var/log/nginx/error.log warn;   # Nginx 的错误日志存放目录
+error_log  /var/log/nginx/error.log warn;   # Nginx 的错误日志存放目录,可以指定为其他目录
 pid        /var/run/nginx.pid;      # Nginx 服务启动时的 pid 存放位置
 
 events {
@@ -68,7 +68,7 @@ http {   # 配置使用最频繁的部分，代理、缓存、日志定义等绝
     default_type        application/octet-stream;   # 默认文件类型
 
     include /etc/nginx/conf.d/*.conf;   # 加载子配置项
-    
+    include /etc/nginx/conf.d/vhost/*.conf #加载子配置项#
     server {
     	listen       80;       # 配置监听的端口
     	server_name  localhost;    # 配置的域名
