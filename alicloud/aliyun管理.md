@@ -43,7 +43,7 @@ RAM: 访问控制
     - ack编程访问
       - oss
       - terraform
-      - aliyunclient
+      - acsclient
 SLB: 负载均衡
     - 后端服务器
     - 虚拟服务器
