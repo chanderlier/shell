@@ -61,7 +61,7 @@ wordpress安装
 docker pull wordpress:latest
 ```
 拉取mysql:5.7的镜像文件
-```bahs
+```bash
 docker pull mysql:5.7
 ```
 docker运行mysql
