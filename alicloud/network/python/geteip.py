@@ -66,7 +66,6 @@ class Sample:
             access_key_id='access_key_id',
             access_key_secret='access_key_secret',
         )
-        # 访问的域名
         config.endpoint = 'vpc.aliyuncs.com'
         return Vpc20160428Client(config)
 
