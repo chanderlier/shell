@@ -19,20 +19,10 @@ class Sample:
         access_key_id: str,
         access_key_secret: str,
     ) -> Ecs20140526Client:
-        """
-        使用AK&SK初始化账号Client
-        @param access_key_id:
-        @param access_key_secret:
-        @return: Client
-        @throws Exception
-        """
         config = open_api_models.Config(
-            # 您的AccessKey ID,
             access_key_id=access_key_id,
-            # 您的AccessKey Secret,
             access_key_secret=access_key_secret
         )
-        # 访问的域名
         config.endpoint = 'ecs-cn-hangzhou.aliyuncs.com'
         return Ecs20140526Client(config)
 
