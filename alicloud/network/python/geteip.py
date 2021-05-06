@@ -84,6 +84,7 @@ class Sample:
         eip_json = client.describe_eip_addresses(describe_eip_addresses_request)
         with open('eiplist.json', 'w') as f:
             print(eip_json, file=f)
+
     @staticmethod
     async def main_async(
         args: List[str],
@@ -127,6 +128,7 @@ class Sample2:
         eip_json = client.describe_eip_addresses(describe_eip_addresses_request)
         with open('eiplist_2.json', 'w') as f:
             print(eip_json, file=f)
+
     @staticmethod
     async def main_async(
         args: List[str],
@@ -170,6 +172,7 @@ class Sample3:
         eip_json = client.describe_eip_addresses(describe_eip_addresses_request)
         with open('eiplist_3.json', 'w') as f:
             print(eip_json, file=f)
+
     @staticmethod
     async def main_async(
         args: List[str],
@@ -213,6 +216,7 @@ class Sample4:
         eip_json = client.describe_eip_addresses(describe_eip_addresses_request)
         with open('eiplist_4.json', 'w') as f:
             print(eip_json, file=f)
+
     @staticmethod
     async def main_async(
         args: List[str],
@@ -256,6 +260,7 @@ class Sample5:
         eip_json = client.describe_eip_addresses(describe_eip_addresses_request)
         with open('eiplist_5.json', 'w') as f:
             print(eip_json, file=f)
+
     @staticmethod
     async def main_async(
         args: List[str],
@@ -267,6 +272,7 @@ class Sample5:
             page_number=2
         )
         await client.describe_eip_addresses_async(describe_eip_addresses_request)
+
 
 if __name__ == '__main__':
     Sample.main(sys.argv[1:])
