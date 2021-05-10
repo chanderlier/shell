@@ -8,6 +8,7 @@ set global validate_password_policy=LOW;
 ```
 
 导出指定表的数据
+以下命令都会锁表
 ```sh
 mysqldump -t database -u username -ppassword --tables table_name1 table_name2 table_name3 > /data/mysql/db.sql
 ```
