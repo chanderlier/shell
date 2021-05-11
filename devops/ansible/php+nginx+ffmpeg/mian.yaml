@@ -1,0 +1,26 @@
+- hosts: server
+  remote_user: root
+  tasks:
+    - name: change name
+      raw: "echo {{hostname|quote}} > /etc/hostname"
+    - name:
+      shell: hostname {{hostname|quote}}
+    - name: install nginx
+      shell: yum install -y nginx 
+    - name: install ffmpeg step1
+      shell: rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+    - name: install ffmpeg step2
+      shell: rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+    - name: install ffmpeg step3
+      shell: yum install ffmpeg ffmpeg-devel -y
+    - name: install php73 1
+      shell:  rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    - name: install php73 2  
+      shell: rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+    - name: install php73
+      shell: yum -y install php73w-fpm
+    - name: start nginx
+      shell: nginx -c /etc/nginx/nginx.conf
+    - name: systemctl php73
+      shell: systemctl enable php73-php-fpm && systemctl start php73-php-fpm
+    

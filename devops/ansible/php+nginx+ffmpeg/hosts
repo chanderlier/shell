@@ -1,0 +1,5 @@
+[server]
+ocr00 hostname=ocr00 ansible_ssh_pass=passwd ansible_ssh_user=root
+ocr01 hostname=ocr01 ansible_ssh_pass=passwd ansible_ssh_user=root
+ocr02 hostname=ocr02 ansible_ssh_pass=passwd ansible_ssh_user=root
+ocr03 hostname=ocr03 ansible_ssh_pass=passwd ansible_ssh_user=root
