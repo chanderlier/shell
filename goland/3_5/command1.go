@@ -1,7 +1,9 @@
 package main
 
 import (
+	"log"
 	"os"
+	"os/exec"
 )
 
 func main() {
