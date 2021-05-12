@@ -26,3 +26,13 @@ mysqldump  -u username -ppassword --default-character-set=utf8 --database databa
 --ignore-table=database_name.table_name2 
 --ignore-table=database_name.table_name3 >/data/mysql/db4.sql
 ```
+
+```
+mysqldump database -u username -ppassword --tables table_name1 table_name2 table_name3 --skip-opt >/data/mysql/db3.sql 
+```
+--skip-opt 相当于禁用了以下几个参数
+--add-drop-table, --add-locks,
+--create-options, --quick, --extended-insert,
+--lock-tables, --set-charset, and --disable-keys
+用这个参数导出的sql，在导入时速度很慢，主要是禁用了--extended-insert
+
