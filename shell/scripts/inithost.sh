@@ -48,6 +48,7 @@ echo "赋予ops用户sudo权限"
 #  禁止用户采用密码登录
 sed -i -e 's/#AuthorizedKeysFile/AuthorizedKeysFile/g' /etc/ssh/sshd_config
 sed -i -e 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+sed -i -e 's/#PasswordAuthentication no/PasswordAuthentication no/g' /etc/ssh/sshd_config
 echo "已禁止用户通过密码登录"
 sed -i -e 's/#PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
 echo "已禁止root用户登录"
