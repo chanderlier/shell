@@ -1,0 +1,144 @@
+# 默认环境变量
+# $CI_PROJECT_NAME: 仓库名
+# $CI_PROJECT_DIR: 项目绝对目录
+# $CI_PROJECT_URL: 仓库地址
+# $CI_COMMIT_REF_NAME: 提交的分支名
+# $GITLAB_USER_EMAIL: 用户邮箱
+
+variables:
+  DOMAIN: ocr.com
+  PROD_DOMAIN: video
+  REMOTE_IP: 10.0.7.100 10.0.7.101 10.0.7.102 10.0.7.103 10.0.7.104 10.0.7.105 10.0.7.106 10.0.7.107
+  MASTER_REMOTE_IP: 192.168.9.100 192.168.9.101 192.168.9.102 192.168.9.103 192.168.9.104 192.168.9.105 192.168.9.106 192.168.9.107 192.168.9.108 192.168.9.109 192.168.9.110 192.168.9.111
+  YUQING_REMOTE_IP: 192.168.9.97
+  PROJECT_PATH: /data/server/ocr
+  UTILS_PATH: /data/server/runner/utils
+  HOME: /home/gitlab-runner/.ssh
+
+
+stages:
+  - PullCode
+  - SyncProject
+  - SendMSG
+
+EchoBuildInfo:
+  stage: PullCode
+  script: 
+    - echo "$CI_PROJECT_URL"
+    - echo "$GITLAB_USER_EMAIL"
+    - echo "$GITLAB_USER_LOGIN"
+    - echo "$GITLAB_USER_NAME"
+    - echo "$DOMAIN"
+    - echo "$DEV_DOMAIN.$DOMAIN"
+    - echo "$PROD_DOMAIN.$DOMAIN"
+    - export
+  only:
+    - master
+    - yuqing
+    - ocrcover
+    - idc
+  tags:
+    - drunner
+
+IsBelongItself:
+  stage: PullCode
+  script: 
+    - |
+      echo ".$PROD_DOMAIN.$DOMAIN"
+      if [[ -f ".$PROD_DOMAIN.$DOMAIN" ]]; then
+        echo "This project is belong to itself"
+      else
+        echo "Error this project is not belong to itself. please check."
+        exit 1
+      fi
+  only:
+    - master
+    - yuqing
+    - ocrcover
+    - idc
+  tags:
+    - drunner
+
+
+SyncCodeToocrcover:
+  stage: SyncProject
+  script:
+    - |
+      PROJECT_PATH=/data/server/ocr_cover
+      echo "Sync project dir to remote host"
+      for host in $REMOTE_IP; do
+        echo "rsync -avzP -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/"
+        rsync -avzP  -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/
+      done
+  only:
+    - ocrcover
+  tags:
+    - drunner
+
+SyncCodeToIDC:
+  stage: SyncProjectoidc
+  script:
+    - |
+      echo "Sync project dir to remote host"
+      for host in $REMOTE_IP; do
+        echo "rsync -avzP -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/"
+        rsync -avzP  -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/
+      done
+  only:
+    - idc
+  tags:
+    - drunner
+
+SyncCodeToMaster:
+  stage: SyncProjectomaster
+  script:
+    - |
+      echo "Sync project dir to remote host"
+      for host in $MASRTER_REMOTE_IP; do
+        echo "rsync -avzP -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/"
+        rsync -avzP  -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/
+      done
+  only:
+    - master
+  tags:
+    - drunner
+
+SyncCodeToYuqing:
+  stage: SyncProjectocryuqing
+  script:
+    - |
+      echo "Sync project dir to remote host"
+      for host in $YUQING_REMOTE_IP; do
+        echo "rsync -avzP -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/"
+        rsync -avzP  -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/
+      done
+  only:
+    - yuqing
+  tags:
+    - drunner
+
+SuccessSendMSG:
+  stage: SendMSG
+  script:
+    - /usr/bin/python $UTILS_PATH/sendmsg_utils.py '成功' $CI_COMMIT_REF_NAME $PROD_DOMAIN $PROD_DOMAIN.$DOMAIN $GITLAB_USER_EMAIL $CI_PROJECT_URL 'None' 'dqyapi'
+  only:
+    - master
+    - yuqing
+    - ocrcover
+    - idc
+  tags:
+    - drunner
+  when: on_success
+
+FailedSendMSG:
+  stage: SendMSG
+  script:
+    - /usr/bin/python $UTILS_PATH/sendmsg_utils.py '失败' $CI_COMMIT_REF_NAME $PROD_DOMAIN $PROD_DOMAIN.$DOMAIN $GITLAB_USER_EMAIL $CI_PROJECT_URL 'None' 'dqyapi'
+  only:
+    - master
+    - yuqing
+    - ocrcover
+    - idc
+  tags:
+    - drunner
+  when: on_failure
