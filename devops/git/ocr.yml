@@ -1,0 +1,139 @@
+# 默认环境变量
+# $CI_PROJECT_NAME: 仓库名
+# $CI_PROJECT_DIR: 项目绝对目录
+# $CI_PROJECT_URL: 仓库地址
+# $CI_COMMIT_REF_NAME: 提交的分支名
+# $GITLAB_USER_EMAIL: 用户邮箱
+
+variables:
+  DOMAIN: ocr2.com
+  PROD_DOMAIN: video
+  REMOTE_IP: 10.0.7.1 10.0.7.2 10.0.7.3
+  MASTER_REMOTE_IP: 192.168.9.1.245 192.168.2.246 192.168.3.110
+  IDC_COVER_REMOTE_IP: 10.0.7.5 10.0.7.6
+  PROJECT_PATH: /root/OCR2
+  UTILS_PATH: /data/server/runner/utils
+  HOME: /home/gitlab-runner/.ssh
+
+
+stages:
+  - PullCode
+  - Comfirm
+  - SyncProject
+  - SendMSG
+
+EchoBuildInfo:
+  stage: PullCode
+  script: 
+    - echo "$CI_PROJECT_URL"
+    - echo "$GITLAB_USER_EMAIL"
+    - echo "$GITLAB_USER_LOGIN"
+    - echo "$GITLAB_USER_NAME"
+    - echo "$DOMAIN"
+    - echo "$DEV_DOMAIN.$DOMAIN"
+    - echo "$PROD_DOMAIN.$DOMAIN"
+    - export
+  only:
+    - master
+    - idc
+    - idc_cover
+  tags:
+    - drunner
+
+IsBelongItself:
+  stage: PullCode
+  script: 
+    - |
+      echo ".$PROD_DOMAIN.$DOMAIN"
+      if [[ -f ".$PROD_DOMAIN.$DOMAIN" ]]; then
+        echo "This project is belong to itself"
+      else
+        echo "Error this project is not belong to itself. please check."
+        exit 1
+      fi
+  only:
+    - master
+    - idc
+    - idc_cover
+  tags:
+    - drunner
+
+
+ConfirmProject:
+  stage: Comfirm
+  script: 
+    - echo "operation must be confirmed"
+  only:
+    - master
+    - idc
+    - idc_cover
+  tags:
+    - drunner
+  when: manual
+  allow_failure: false
+
+SyncCodeToidccover:
+  stage: SyncProject
+  script:
+    - |
+      echo "Sync project dir to remote host"
+      for host in $REMOTE_IP; do
+        echo "rsync -avzP -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/"
+        rsync -avzP  -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/
+      done
+  only:
+    - idc_cover
+  tags:
+    - drunner
+
+SyncCodeToIDC:
+  stage: SyncProject
+  script:
+    - |
+      echo "Sync project dir to remote host"
+      for host in $REMOTE_IP; do
+        echo "rsync -avzP -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/"
+        rsync -avzP  -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/
+      done
+  only:
+    - idc
+  tags:
+    - drunner
+
+SyncCodeToMaster:
+  stage: SyncProject
+  script:
+    - |
+      echo "Sync project dir to remote host"
+      for host in $MASTER_REMOTE_IP; do
+        echo "rsync -avzP -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/"
+        rsync -avzP  -e "ssh -i ${HOME}/id_rsa -o 'StrictHostKeyChecking no'" --exclude "conf/host.php" $CI_PROJECT_DIR/* root@$host:$PROJECT_PATH/
+      done
+  only:
+    - master
+  tags:
+    - drunner
+
+SuccessSendMSG:
+  stage: SendMSG
+  script:
+    - /usr/bin/python $UTILS_PATH/sendmsg_utils.py '成功' $CI_COMMIT_REF_NAME $PROD_DOMAIN $PROD_DOMAIN.$DOMAIN $GITLAB_USER_EMAIL $CI_PROJECT_URL 'None' 'dqyapi'
+  only:
+    - master
+    - idc
+    - idc_cover
+  tags:
+    - drunner
+  when: on_success
+
+FailedSendMSG:
+  stage: SendMSG
+  script:
+    - /usr/bin/python $UTILS_PATH/sendmsg_utils.py '失败' $CI_COMMIT_REF_NAME $PROD_DOMAIN $PROD_DOMAIN.$DOMAIN $GITLAB_USER_EMAIL $CI_PROJECT_URL 'None' 'dqyapi'
+  only:
+    - master
+    - idc
+    - idc_cover
+  tags:
+    - drunner
+  when: on_failure
