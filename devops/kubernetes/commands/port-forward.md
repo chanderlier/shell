@@ -1,0 +1,1 @@
+kubectl port-forward service/quickstart-es-http  9200 --address 0.0.0.0 
