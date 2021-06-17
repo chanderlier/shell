@@ -36,3 +36,7 @@ mysqldump database -u username -ppassword --tables table_name1 table_name2 table
 --lock-tables, --set-charset, and --disable-keys
 用这个参数导出的sql，在导入时速度很慢，主要是禁用了--extended-insert
 
+导出的sql中不想要lock tables，需要加上--skip-add-locks
+```sh
+mysqldump  t_test -u root -p'passwd' --tables test-table  --lock-tables=false --skip-add-locks > /data/backup/test-table.sql
+```
