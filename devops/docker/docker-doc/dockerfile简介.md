@@ -9,7 +9,6 @@ ARG workdir=/app
 
 WORKDIR ${workdir}
 
-
 COPY 文件/代码/启动脚本  镜像中的目录 (例如：COPY ./entrypoint.sh ./)
 
 RUN 在镜像中执行一些命令，例如mkdir/yum install/chmod ...
