@@ -20,7 +20,7 @@ yum localinstall percona-xtrabackup-80-8.0.4-1.el7.x86_64.rpm
 ```
 安装qpress
 ```sh
-yum install qpress
+yum install -y qpress
 ```
 卸载
 ```sh
