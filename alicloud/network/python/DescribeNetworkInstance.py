@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # This file is auto-generated, don't edit it. Thanks.
 # 获取指定地区，指定弹性网卡的ID信息，写入到nilist.txt中
+# pip3 install alibabacloud_ecs20140526==2.0.2
 import sys
 import ast
 from typing import List

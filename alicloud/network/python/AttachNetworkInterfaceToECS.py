@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # This file is auto-generated, don't edit it. Thanks.
 # 将ecsidlist.txt中的实例和nilist.txt中的辅助弹性网卡绑定
+# pip3 install alibabacloud_ecs20140526==2.0.2
+
 import sys
 from typing import List
 
@@ -17,7 +19,7 @@ with open('ecsidlist.txt', 'r') as f:
     ecsidlist = [x.strip() for x in ecsid if x.strip() != '']
 
 
-class AttachNetworkIntertoECS:
+class AttachNetworkInterfacetoECS:
     def __init__(self):
         pass
 
@@ -37,12 +39,12 @@ class AttachNetworkIntertoECS:
     def main(
         args: List[str],
     ) -> None:
-        client = Sample.create_client('accessKeyId', 'accessKeySecret')
+        client = AttachNetworkInterfacetoECS.create_client('accessKeyId', 'accessKeySecret')
         for i in range(len(nilist)):
             attach_network_interface_request = ecs_20140526_models.AttachNetworkInterfaceRequest(
                 region_id='cn-shanghai',
                 page_size=100,
-                instance_id=ecslist[i],
+                instance_id=ecsidlist[i],
                 wait_for_network_configuration_ready=False,
                 network_interface_id=nilist[i]
             )
@@ -52,12 +54,12 @@ class AttachNetworkIntertoECS:
     async def main_async(
         args: List[str],
     ) -> None:
-        client = Sample.create_client('accessKeyId', 'accessKeySecret')
+        client = AttachNetworkInterfacetoECS.create_client('accessKeyId', 'accessKeySecret')
         for i in range(len(nilist)):
             attach_network_interface_request = ecs_20140526_models.AttachNetworkInterfaceRequest(
                 region_id='cn-shanghai',
                 page_size=100,
-                instance_id=ecslist[i],
+                instance_id=ecsidlist[i],
                 wait_for_network_configuration_ready=False,
                 network_interface_id=nilist[i]
             )
@@ -65,4 +67,4 @@ class AttachNetworkIntertoECS:
 
 
 if __name__ == '__main__':
-    AttachNetworkIntertoECS.main(sys.argv[1:])
+    AttachNetworkInterfacetoECS.main(sys.argv[1:])
