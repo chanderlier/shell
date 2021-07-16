@@ -6,7 +6,7 @@ from alibabacloud_tea_openapi import models as open_api_models
 from alibabacloud_vpc20160428 import models as vpc_20160428_models
 
 
-class logininfo:
+class aliclient:
     def __init__(self):
         pass
 

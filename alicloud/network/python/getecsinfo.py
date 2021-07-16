@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-from alicloudack import logininfo
-import sys
 import os
+import sys
 import json
 import ast
 import requests
@@ -9,9 +8,10 @@ from typing import List
 from alibabacloud_vpc20160428.client import Client as Vpc20160428Client
 from alibabacloud_tea_openapi import models as open_api_models
 from alibabacloud_vpc20160428 import models as vpc_20160428_models
+from alicloud.network.python.aliclouack import aliclient
 
 
-class getinfo():
+class getinfo:
     def __init__():
         pass
 
@@ -19,7 +19,7 @@ class getinfo():
     def main(
         args: List[str],
     ) -> None:
-        client = logininfo.create_client('accessKeyId', 'accessKeySecret')
+        client = aliclient.create_client('accessKeyId', 'accessKeySecret')
         describe_eip_addresses_request = vpc_20160428_models.DescribeEipAddressesRequest(
             region_id='ap-southeast-1',
             page_size=50,
@@ -34,7 +34,7 @@ class getinfo():
     async def main_async(
         args: List[str],
     ) -> None:
-        client = logininfo.create_client('accessKeyId', 'accessKeySecret')
+        client = aliclient.create_client('accessKeyId', 'accessKeySecret')
         describe_eip_addresses_request = vpc_20160428_models.DescribeEipAddressesRequest(
             region_id='ap-southeast-1',
             page_size=50,
