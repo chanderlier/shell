@@ -15,19 +15,9 @@ class logininfo:
         access_key_id: str,
         access_key_secret: str,
     ) -> Vpc20160428Client:
-        """
-        使用AK&SK初始化账号Client
-        @param access_key_id:
-        @param access_key_secret:
-        @return: Client
-        @throws Exception
-        """
         config = open_api_models.Config(
-            # 您的AccessKey ID,
             access_key_id='xxxx',
-            # 您的AccessKey Secret,
             access_key_secret='xxxx',
         )
-        # 访问的域名
         config.endpoint = 'vpc.aliyuncs.com'
         return Vpc20160428Client(config)
