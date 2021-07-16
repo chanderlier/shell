@@ -55,7 +55,7 @@ class DescribeEcsInfo:
     def main(
         args: List[str],
     ) -> None:
-        client = Sample.create_client('accessKeyId', 'accessKeySecret')
+        client = DescribeEcsInfo.create_client('accessKeyId', 'accessKeySecret')
         describe_instances_request = ecs_20140526_models.DescribeInstancesRequest(
             region_id='cn-shanghai',
             page_size=100
@@ -69,7 +69,7 @@ class DescribeEcsInfo:
     async def main_async(
         args: List[str],
     ) -> None:
-        client = Sample.create_client('accessKeyId', 'accessKeySecret')
+        client = DescribeEcsInfo.create_client('accessKeyId', 'accessKeySecret')
         describe_instances_request = ecs_20140526_models.DescribeInstancesRequest(
             region_id='cn-shanghai',
             page_size=100

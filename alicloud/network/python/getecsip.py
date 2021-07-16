@@ -17,25 +17,25 @@ os.chdir("/alidata/scripts/singapore")
 
 
 def clearoldiplist():
-    r = redis.Redis(host='sinredis.redis.singapore.rds.aliyuncs.com', port=63790, db=0, password='LQs$rGc0y^%wlpo!Mq')
+    r = redis.Redis(host='domain', port=63790, db=0, password='passwd')
     r.delete('ali_proxies')
     r.delete('ali_proxies_2')
 
 
 def writeiptoredis1():
-    r = redis.Redis(host='sinredis.redis.singapore.rds.aliyuncs.com', port=63790, db=0, password='LQs$rGc0y^%wlpo!Mq')
+    r = redis.Redis(host='domain', port=63790, db=0, password='passwd')
     with open('eiplist1.txt', 'r') as f:
         iplist = f.readlines()
-        iplists = ['targetsocial:9tLpe2OCGsuawhUhLJIN@' + x.strip() + ':10240' for x in iplist if x.strip() != ""]
+        iplists = [x.strip() for x in iplist if x.strip() != ""]
         for i in iplists:
             r.sadd('ali_proxies', i)
 
 
 def writeiptoredis2():
-    r = redis.Redis(host='sinredis.redis.singapore.rds.aliyuncs.com', port=63790, db=0, password='LQs$rGc0y^%wlpo!Mq')
+    r = redis.Redis(host='domain', port=63790, db=0, password='passwd')
     with open('eiplist2.txt', 'r') as f:
         iplist = f.readlines()
-        iplists = ['targetsocial:9tLpe2OCGsuawhUhLJIN@' + x.strip() + ':10240' for x in iplist if x.strip() != ""]
+        iplists = [x.strip() for x in iplist if x.strip() != ""]
         for i in iplists:
             r.sadd('ali_proxies_2', i)
 
