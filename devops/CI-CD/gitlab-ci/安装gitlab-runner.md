@@ -17,7 +17,7 @@ Running in system-mode.
 Enter the GitLab instance URL (for example, https://gitlab.com/):
 http://git.dieser.com:8888/ # gitlab域名
 Enter the registration token:
-wTM22czMMpPSrUuV-C54        # token
+wTM33czMMpPSrUuV-C54        # token
 Enter a description for the runner:
 [master]: test
 Enter tags for the runner (comma-separated):
@@ -33,6 +33,5 @@ gitlab-runner status
 Runtime platform                                    arch=amd64 os=linux pid=90228 revision=7f7a4bb0 version=13.11.0
 ```
 此处gitlab-runner就已经安装完毕
-以前端后端数据组举例。
-通过
-gitlab-runner register命令可以注册tag为frunner,brunner,drunner三个runner。使用一段时间后，我们发现发布会变慢。后面决定再加一台服务器，安装gitlab-runner tag保持一致即可。即frunner，brunner分布在两台服务器上，有效提升了项目发布的效率。
+以前端后端数据组发布举例举例。不同的组用对应不同的runner。
+通过gitlab-runner register命令可以注册tag为frunner,brunner,drunner三个runner。使用一段时间后，我们发现发布会变慢。后面决定再加一台服务器，安装gitlab-runner tag保持一致即可。即frunner，brunner分布在两台服务器上，有效提升了项目发布的效率。
