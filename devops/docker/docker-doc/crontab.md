@@ -1,4 +1,5 @@
 在docker中使用crontab
+基于centos7
 ```Dockerfile
 FROM centos:centos7.5.1804
 RUN yum update -y \
