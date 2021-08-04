@@ -8,7 +8,7 @@ tar -zxvf helm-v3.5.4linux-amd64.tar.gz
 ```
 移动目录
 ```sh
-mv linux-amd64/helm /usr/local/bin/helm
+mv linux-amd64/helm /usr/local/bin/
 ```
 初始化
 ```sh
