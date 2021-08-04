@@ -10,7 +10,7 @@ yum install -y docker-ce
 ```
 设置docker开机自启动
 ```bash
-yum install -y docker-ce
+systemctl enable docker
 ```
 启动docker
 ```bash
