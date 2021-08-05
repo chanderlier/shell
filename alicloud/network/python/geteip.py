@@ -102,18 +102,6 @@ class Sample2:
         pass
 
     @staticmethod
-    def create_client(
-        access_key_id: str,
-        access_key_secret: str,
-    ) -> Vpc20160428Client:
-        config = open_api_models.Config(
-            access_key_id='access_key_id',
-            access_key_secret='access_key_secret',
-        )
-        config.endpoint = 'vpc.aliyuncs.com'
-        return Vpc20160428Client(config)
-
-    @staticmethod
     def main(
         args: List[str],
     ) -> None:
@@ -144,18 +132,6 @@ class Sample2:
 class Sample3:
     def __init__(self):
         pass
-
-    @staticmethod
-    def create_client(
-        access_key_id: str,
-        access_key_secret: str,
-    ) -> Vpc20160428Client:
-        config = open_api_models.Config(
-            access_key_id='access_key_id',
-            access_key_secret='access_key_secret',
-        )
-        config.endpoint = 'vpc.aliyuncs.com'
-        return Vpc20160428Client(config)
 
     @staticmethod
     def main(
@@ -190,18 +166,6 @@ class Sample4:
         pass
 
     @staticmethod
-    def create_client(
-        access_key_id: str,
-        access_key_secret: str,
-    ) -> Vpc20160428Client:
-        config = open_api_models.Config(
-            access_key_id='access_key_id',
-            access_key_secret='access_key_secret',
-        )
-        config.endpoint = 'vpc.aliyuncs.com'
-        return Vpc20160428Client(config)
-
-    @staticmethod
     def main(
         args: List[str],
     ) -> None:
@@ -232,18 +196,6 @@ class Sample4:
 class Sample5:
     def __init__(self):
         pass
-
-    @staticmethod
-    def create_client(
-        access_key_id: str,
-        access_key_secret: str,
-    ) -> Vpc20160428Client:
-        config = open_api_models.Config(
-            access_key_id='access_key_id',
-            access_key_secret='access_key_secret',
-        )
-        config.endpoint = 'vpc.aliyuncs.com'
-        return Vpc20160428Client(config)
 
     @staticmethod
     def main(
