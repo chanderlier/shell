@@ -28,7 +28,7 @@ def parse_data(data_dict):
     datalen = len(datalist)
     for item in range(datalen):
         templist = []
-        templist.append(datalist[i].get('NetworkInterfaceId'))
+        templist.append(datalist[item].get('NetworkInterfaceId'))
         with open('nilist.txt', 'a') as f:
             f.write('-'.join(templist) + '\n')
 
