@@ -15,10 +15,12 @@ y.setdata(3.23422323)
 x.display()
 y.display()
 
+
 class Person:
     def __init__(self, name, job):
         self.name = name
         self.job = job
+
     def into(self):
         return (self.name, self.job)
 
