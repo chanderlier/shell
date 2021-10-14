@@ -1,0 +1,1 @@
+green_echo ${conn_db_cmd} -e \"GRANT ALL privileges  ON ${db_name}.* TO ${user}@\'${ip}\' WITH GRANT OPTION"

@@ -8,3 +8,4 @@ rsync -e "ssh -p22" -avpz  /data/ root@10.0.4.212:/data/
 ```sh
 rsync -a --delete emptydir/ test/
 ```
+
