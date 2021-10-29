@@ -29,6 +29,7 @@ def redial():
     time.sleep(1)
 
 
+# 获取本机出网IP
 def getip():
     # HTTP GET
     r = requests.get('https://ipw.cn/api/ip/locate')
@@ -40,6 +41,7 @@ def getip():
         f.write(newip)
 
 
+# 将IP结合指定信息写入到redis
 def writeiptoredis(expire):
     r = redis.Redis(host='ip', port=63790, db=22, password='passwd')
     with open("/root/ip.txt", 'r') as f:
