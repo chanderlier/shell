@@ -15,6 +15,7 @@ url = 'http://www.baidu.com'
 hostname = socket.gethostname()
 
 
+# 检测网络情况
 def checknetwork():
     try:
         response = requests.get(url, timeout=1)
@@ -23,6 +24,7 @@ def checknetwork():
         return False
 
 
+# 重新拨号
 def redial():
     subprocess.Popen("/usr/sbin/pppoe-stop")
     subprocess.Popen("/usr/sbin/pppoe-start")
@@ -60,6 +62,7 @@ if __name__ == "__main__":
         print("1111")
         redial()
     et = int(time.time())
+    # 设置过期时间
     expire = 300 - (et - st)
     getip()
     writeiptoredis(expire)
