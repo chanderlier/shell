@@ -46,6 +46,7 @@ daocloud源下载
 ```sh
 curl -L https://get.daocloud.io/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 ```
+也可以将docker-compose和harbor等资源放到公司内部的sftp服务器，或者s3、oss等云厂商的储存上。
 ```sh
 chmod +x /usr/local/bin/docker-compose
 ```
@@ -74,7 +75,7 @@ http:
   # port for http, default is 80. If https enabled, this port will redirect to https port
   port: 80 
 ```
-如果没有https的话，需要注释掉对应的https证书
+如果没有https的话，需要注释掉对应的https相关内容。
 #### 修改admin密码
 ```sh
 harbor_admin_password: Harbor12345 -> harbor_admin_password: YourPASSWD
