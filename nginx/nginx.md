@@ -10,6 +10,7 @@ systemctl enable nginx
 ```
 启动nginx
 ```bash
+systemctl start nginx 或者
 nginx -c /etc/nginx/nginx.conf
 ```
 常见指令

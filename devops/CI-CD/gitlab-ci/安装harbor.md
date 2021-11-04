@@ -8,6 +8,7 @@ yum install -y yum-utils device-mapper-persistent-data lvm2
 ```bash
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 ```
+直接用官方源安装，但可能速度比较慢，可以切换到阿里云、腾讯云、网易云等yum仓库
 ```bash
 yum install -y docker-ce
 ```
@@ -37,11 +38,13 @@ systemctl daemon-reload
 systemctl restart docker 
 ````
 ### 安装docker-compose
+github官方源，国内服务器下载可能很慢
 ```sh
-curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
+daocloud源下载
 ```sh
-chmod +x /usr/local/bin/docker-compose
+curl -L https://get.daocloud.io/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 ```
 ```sh
 chmod +x /usr/local/bin/docker-compose
@@ -69,8 +72,9 @@ hostname: reg.mydomain.com   -> hostname: harbor.dieser.com 修改为指定域�
 ```sh
 http:
   # port for http, default is 80. If https enabled, this port will redirect to https port
-  port: 8000 #80修改为8000
+  port: 80 
 ```
+如果没有https的话，需要注释掉对应的https证书
 #### 修改admin密码
 ```sh
 harbor_admin_password: Harbor12345 -> harbor_admin_password: YourPASSWD
@@ -89,14 +93,14 @@ vim /etc/docker/daemon.json
 ```
 ```sh
 {
-"insecure-registries" : ["harbor.dieser.com:8000", "0.0.0.0"]
+"insecure-registries" : ["harbor.dieser.com", "0.0.0.0"]
 }
 ```
 
 ### 在本地机器推送镜像到harbor上
 ```sh
-docker tag testimage:v15 harbor.dieser.com:8000/test/testimage:v1
+docker tag testimage:v15 harbor.dieser.com/test/testimage:v1
 ```
 ```sh
-docker push harbor.dieser.com:8000/test/testimage:v1
+docker push harbor.dieser.com/test/testimage:v1
 ```
