@@ -63,8 +63,8 @@ resource "alicloud_ram_policy" "policy" {
         ],
         "Effect": "Allow",
         "Resource": [
-          "acs:oss:*:*:refrain1234",
-          "acs:oss:*:*:refrain1234/*"
+          "acs:oss:*:*:osstest",
+          "acs:oss:*:*:osstest/*"
         ]
       }
     ],
@@ -99,7 +99,7 @@ resource "alicloud_resource_manager_role" "role" {
                     "Effect": "Allow",
                     "Principal": {
                         "RAM":[
-                                "acs:ram::1216403154769350:root"
+                                "acs:ram::12********9350:root"
                         ]
                     }
                 }
