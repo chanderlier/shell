@@ -306,14 +306,12 @@ The root module does not declare a variable named "ARN" but a value was found in
 ```sh
 vim terraform.tfvars
 ```
-```json
-
+```tfvars
  ram_user_name="tfuser",
  ram_role_name="tfrole",
  oss_bucket_name="tfossbucket",
  ram_policy_name="tframpolicy",
  ARN="acs:ram::1216******769350:root"
-
 ```
 ```sh
 vim variables.tf
@@ -414,13 +412,13 @@ resource "alicloud_ram_role_policy_attachment" "attach" {
 ```
 预览
 ```sh
-terraform plan
+terraform plan -var-file="var.tfvars"
 ```
 创建资源
 ```sh
-terraform apply
+terraform apply -var-file="var.tfvars"
 ```
 验证，确定没问题后,删除创建的资源
 ```sh
-terraform destroy
+terraform destroy -var-file="var.tfvars"
 ```
