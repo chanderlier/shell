@@ -338,6 +338,7 @@ variable "ARN" {
   description = "ARNID"
 }
 ```
+main.tf
 ```tf
 resource "alicloud_oss_bucket" "bucket-acl" {
   bucket = var.oss_bucket_name
