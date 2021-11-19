@@ -9,11 +9,13 @@ unzip terraform_0.13.5_linux_amd64.zip
 mv terraform /usr/local/bin/terraform
 ```
 通过terraform快速创建一个ECS实例，并设置好相应的服务,例如VPC
+```tf
 resource "alicloud_vpc" "vpc" {
   name       = "tf_test"
   cidr_block = "172.16.0.0/12"
 }
-
+```
+```tf
 resource "alicloud_vswitch" "vsw" {
   vpc_id            = alicloud_vpc.vpc.id
   cidr_block        = "172.16.0.0/21"
@@ -23,7 +25,8 @@ resource "alicloud_security_group" "default" {
   name = "default"
   vpc_id = alicloud_vpc.vpc.id
 }
-
+```
+```tf
 resource "alicloud_security_group_rule" "allow_all_tcp" {
   type              = "ingress"
   ip_protocol       = "tcp"
@@ -48,3 +51,4 @@ resource "alicloud_instance" "instance" {
   #internet_max_bandwidth_out =10
   password = "password!@1234"
 }
+```
