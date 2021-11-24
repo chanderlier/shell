@@ -1,6 +1,11 @@
+### 配置相关
+git config --global user.name "username" #配置全局用户名  
+git config --global user.email "email"   #配置全局邮箱  
+git config --global http.sslVerify false #配置全局免https认证  
+git config --global credential.helper store #全局保存密码  
 ### 常用命令
 git init #生成.git目录
-gitk  add . #把当前目录里的文件加入到暂存区
+git add . #把当前目录里的所有文件加入到暂存区
 git checkout branch #切换分支
 git switch branch #切换分支
 git checkout -b dev #创建并切换到dev分支
@@ -12,7 +17,7 @@ git remote add origin 远程仓库地址 #添加远程仓库
 git branch --set-upstream-to=origin/<branch> master #本地仓库和远程仓库关联，git pull时就会有提示
 git status #会有信息显示:Your branch is up-to-date with 'origin/master'.
 不过一般远程仓库会和现有仓库合并不了，单纯的git pull会提示fatal: refusing to merge unrelated histories
-git pull --rebase origin master #看来以rebase变基的方式可以合并啊
+git pull --rebase origin master #以rebase变基的方式合并
 git push	 #提交到远程仓库
 git clone -b uat 远程仓库 #拉取远程仓库uat分支的代码
 git status #查看状态
@@ -88,3 +93,4 @@ git push origin HEAD -f #强制提交一次，之前错误的提交就从远程�
 
 git log #得到你需要回退一次提交的commit id
 git revert <commit_id>  #撤销指定的版本，撤销也会作为一次提交进行保存
+
