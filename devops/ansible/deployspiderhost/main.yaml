@@ -1,0 +1,42 @@
+- hosts: server
+  remote_user: root
+  tasks:
+    - name: install python3 golang
+      yum:
+        name:  ['python3', 'go', 'squid']
+        state: present
+    - name: install p-redis p-requests
+      shell: pip3 install redis requests
+    - name: cp py
+      copy: src=vps.py dest=/root/vps.py
+    - name: mkdir golang
+      file:
+        path: /root/golang
+        state: directory
+    - name: cp dial.go
+      copy: src=dial.go dest=/root/golang/dial.go
+    - name: cp squid_pass
+      copy: src=squid_passwd dest=/etc/squid/squid_passwd
+    - name: cp squid.conf
+      copy: src=squid.conf dest=/etc/squid/squid.conf
+    - name: touch ip.txt
+      file:
+        path: /root/ip.txt
+        state: touch
+    - name: start squid
+      service:
+         name: squid
+         state: started
+    - name: stop firewalld
+      ansible.builtin.systemd:
+         name: firewalld
+         state: stopped
+         enabled: no
+    - name: add cron job
+      copy: src=root dest=/var/spool/cron/root
+    - name: mkdir .ssh
+      file:
+        path: /root/.ssh
+        state: directory
+    - name: add key
+      copy: src=authorized_keys dest=/root/.ssh/authorized_keys

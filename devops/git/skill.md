@@ -1,11 +1,14 @@
 ### 配置相关
+```sh
 git config --global user.name "username" #配置全局用户名  
 git config --global user.email "email"   #配置全局邮箱  
 git config --global http.sslVerify false #配置全局免https认证  
 git config --global credential.helper store #全局保存密码  
+```
 ### 常用命令
-git init #生成.git目录
-git add . #把当前目录里的所有文件加入到暂存区
+```sh
+git init #生成.git目录  
+git add . #把当前目录里的所有文件加入到暂存区  
 git checkout branch #切换分支
 git switch branch #切换分支
 git checkout -b dev #创建并切换到dev分支
@@ -28,14 +31,16 @@ git stash drop
 git stash pop
 git cherry-pick commitid #复制一个特定的提交到当前分支
 ### 代码同步
-上传前端代码到frontend分支
-git init #初始化当前目录
-git remote add frontend  远程仓库地址 #添加远程仓库地址
-git  checkout -b frontend  #在本地创建frontend分支并切换到该分支
-git add .
-git commit -m 'message'
-git push frontend frontend 
-
+上传前端代码到frontend分支  
+git init #初始化当前目录  
+git remote add frontend  远程仓库地址 #添加远程仓库地址  
+git  checkout -b frontend  #在本地创建frontend分支并切换到该分支  
+```
+```sh
+git add .  
+git commit -m 'message'  
+git push frontend frontend   
+```
 
 从已有的代码目录更新代码
 ```sh
@@ -73,24 +78,24 @@ git reset HEAD a.txt
 
 3、git commit到本地分支、但没有git push到远程。在提交git commit时，message最好能够详细的记录这次提交的信息，以便后续任何情况需要回滚时，能快速确定id。
 
-git log #得到你需要回退一次提交的commit id
+git log #得到你需要回退一次提交的commit id 
 git reset --hard <commit_id>  #回到其中你想要的某个版
+或者  
+git reset --hard HEAD^  #回到最新的一次提交  
+git reset --hard HEAD^^ #回到上上个版本  
+git reset --hard HEAD-10 #回到十个版本之前  
 或者
-git reset --hard HEAD^  #回到最新的一次提交
-git reset --hard HEAD^^ #回到上上个版本
-git reset --hard HEAD-10 #回到十个版本之前
-或者
-git reset HEAD^  #此时代码保留，回到 git add 之前
+git reset HEAD^  #此时代码保留，回到 git add 之前  
 
-4、git push把修改提交到远程仓库
-1）通过git reset是直接删除指定的commit
+4、git push把修改提交到远程仓库  
+1）通过git reset是直接删除指定的commit  
 
-git log #得到你需要回退一次提交的commit id
-git reset --hard <commit_id>
-git push origin HEAD -f #强制提交一次，之前错误的提交就从远程仓库删除
+git log #得到你需要回退一次提交的commit id  
+git reset --hard <commit_id>  
+git push origin HEAD -f #强制提交一次，之前错误的提交就从远程仓库删除  
 
-2）通过git revert是用一次新的commit来回滚之前的commit
+2）通过git revert是用一次新的commit来回滚之前的commit 
 
-git log #得到你需要回退一次提交的commit id
-git revert <commit_id>  #撤销指定的版本，撤销也会作为一次提交进行保存
+git log #得到你需要回退一次提交的commit id  
+git revert <commit_id>  #撤销指定的版本，撤销也会作为一次提交进行保存  
 
