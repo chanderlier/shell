@@ -1,0 +1,5 @@
+ram_user_name   = "tfuser"
+ram_role_name   = "tfrole"
+oss_bucket_name = "tfossbucket"
+ram_policy_name = "tframpolicy"
+ARN             = "acs:ram::1216403154769350:root"
