@@ -2,6 +2,10 @@
 ```sh
 wget https://get.helm.sh/helm-v3.5.4-linux-amd64.tar.gz
 ```
+可能下载比较慢，可以使用国内源
+```
+wget https://mirrors.huaweicloud.com/helm/v3.7.1/helm-v3.7.1-linux-amd64.tar.gz
+```
 解压
 ```sh
 tar -zxvf helm-v3.5.4linux-amd64.tar.gz
@@ -10,7 +14,7 @@ tar -zxvf helm-v3.5.4linux-amd64.tar.gz
 ```sh
 mv linux-amd64/helm /usr/local/bin/
 ```
-初始化
+添加仓库
 ```sh
-helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v3.5.4  --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+helm repo add bitnami https://charts.bitnami.com/bitnami
 ```

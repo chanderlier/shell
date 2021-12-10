@@ -1,0 +1,1 @@
+/usr/bin/find /var/log/celery/* -name "*.log" -exec cp /dev/null {} \;

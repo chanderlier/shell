@@ -18,3 +18,7 @@ ansible-playbook -i hosts --limit '!vps002' main.yaml
 ```sh
 ansible-playbook main.yaml -i hosts --limit 'TSVPS014*:TSVPS016*:TSVPS017*'
 ```
+检测目标主机是否有网
+```sh
+ansible -i hosts server  -m command -a "ping -c 1 www.baidu.com"|grep FAILED
+```
