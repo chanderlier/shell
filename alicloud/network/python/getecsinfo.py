@@ -8,7 +8,7 @@ from typing import List
 from alibabacloud_vpc20160428.client import Client as Vpc20160428Client
 from alibabacloud_tea_openapi import models as open_api_models
 from alibabacloud_vpc20160428 import models as vpc_20160428_models
-from alicloud.network.python.aliclouack import aliclient
+from alicloud.network.python.alicloudack import aliclient
 
 
 class getinfo:
