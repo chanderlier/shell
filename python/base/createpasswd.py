@@ -14,6 +14,7 @@ number = string.digits
 Letter = string.ascii_letters
 # 定义生成密码是组成密码元素的范围   字符+数字+大小写字母
 passwd = symbols + number + Letter
+password = number + Letter
 
 
 def generate_passwd(*args, **kwargs):
@@ -23,6 +24,13 @@ def generate_passwd(*args, **kwargs):
     return ''.join(passwd_lst)              # 合并列表中的所有元素组成新的字符串
 
 
+def generate_password(*args, **kwargs):
+    passwd_lst = []
+    while (len(passwd_lst) < passwd_length):
+        passwd_lst.append(choice(password))   # 把循环出来的字符插入到passwd_lst列表中
+    return ''.join(passwd_lst)              # 合并列表中的所有元素组成新的字符串
+
+
 if __name__ == '__main__':
     for i in range(0, passwd_count):
-        print(generate_passwd())
+        print(generate_password())
