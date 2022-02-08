@@ -31,9 +31,13 @@ Calling ioctl() to re-read partition table.
 ```sh
 mkfs.etx4 /dev/vdb1
 ```
-查看磁盘uuid
+查看磁盘uuid,负责目标磁盘的uuid
 ```sh
 blkid
+```
+或者可以直接输入命令打印出指定磁盘的uuid
+```sh
+blkid |grep /dev/sda2|awk -F '"' '{print $2}'
 ```
 新建目录
 ```sh
