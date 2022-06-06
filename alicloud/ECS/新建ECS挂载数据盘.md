@@ -1,3 +1,5 @@
+# aliyun ecs挂载数据盘
+为了数据安全，我们一般会在ecs上分一个系统盘和数据盘。如果没有提前做好镜像的话，数据盘需要我们手动配置下。
 ```sh
 [root@gitlab ~]# fdisk /dev/vdb
 欢迎使用 fdisk (util-linux 2.23.2)。
