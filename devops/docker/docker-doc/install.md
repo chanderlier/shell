@@ -30,6 +30,9 @@ vim /etc/docker/daemon.json
 systemctl daemon-reload
 ```
 重启docker，使配置生效
-````bash
+```bash
 systemctl restart docker 
-````
+```
+docker-compose
+```sh
+```

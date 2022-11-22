@@ -294,7 +294,7 @@ terraform plan
 进行测试
 
 第二种，定义好变量文件，直接引用。如果后期有类似的项目，可以新建一个文件夹，copy文件到新目录，修改terraform.tfvars文件，然后执行对应的命令生成资源即可。
-如果制定.tfvars为terraform.tfvars，则执行命令时默认加载，如果是var.tfvars的话，则需要通过
+如果指定.tfvars为terraform.tfvars，则执行命令时默认加载，如果是var.tfvars的话，则需要通过
 ```sh
 terraform plan -var-file="var.tfvars"
 ```

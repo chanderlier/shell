@@ -5,6 +5,7 @@ import string
 
 passwd_length = int(input('请输入要生成的密码长度：'))
 passwd_count = int(input('请输入要生成几组密码：'))
+whether_puncuation = input('请输入是否需要特殊字符: y/n ')
 
 # 通过string.punctuation获取所有的字符 如：'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
 symbols = string.punctuation
@@ -33,4 +34,7 @@ def generate_password(*args, **kwargs):
 
 if __name__ == '__main__':
     for i in range(0, passwd_count):
-        print(generate_password())
+        if whether_puncuation == 'y':
+            print(generate_passwd())
+        else:
+            print(generate_password())
