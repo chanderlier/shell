@@ -1,4 +1,4 @@
-[defaults]
+[defaults]  
 host_key_checking=false #ssh登录免去验证  
 iventory = hosts       #主机目录  
 forks = 30             #并发数  
